@@ -8,8 +8,8 @@ const Login = () => {
   const { data } = useQuery("users", getUsers);
 
   return (
-    <div>
-      <Input />
+    <div className="min-h-screen flex items-center justify-center">
+      <Input className="w-[500px]" />
       <Button>Login</Button>
     </div>
   );
