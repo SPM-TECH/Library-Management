@@ -1,9 +1,10 @@
 import Login from "./pages/Login";
+import Optionpannel from "./pages/Optionpannel";
 
 function App() {
   return (
     <div>
-      <Login />
+      <Optionpannel/>
     </div>
   );
 }
