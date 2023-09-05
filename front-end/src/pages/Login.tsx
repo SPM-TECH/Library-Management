@@ -1,50 +1,73 @@
 import { useQuery } from "react-query";
-import { getUsers } from "../api/users";
+import { getUserByNic } from "../api/users";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { AspectRatio } from "@/components/ui/aspect-ratio"
-import Image from "next/image"
-import bg  from '../assets/bg.png'
-import logo from '../assets/logo.png'
+import logo from "../assets/logo.png";
+import { useState } from "react";
 
 const Login = () => {
-  const { data } = useQuery("users", getUsers);
+  const [input, setInput] = useState("");
+  const [enabled, setEnabled] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
+
+  const { data, error, isLoading, isRefetching } = useQuery(
+    ["user"],
+    async () => await getUserByNic(input),
+    {
+      enabled: enabled,
+    }
+  );
+
+  const handleClick = () => {
+    const validNIC = /\d{9,11}V/i.test(input);
+    if (!validNIC) {
+      setErrMsg("Not a valid nic number");
+      return;
+    }
+    setEnabled(true);
+  };
 
   return (
-     
     <div className="min-h-screen flex items-center justify-center bg-[url('./src/assets/bg.png')] bg-cover bg-no-repeat">
-    <div className="min-h-content w-screen items-center justify-center flex flex-row absolute top-10 bg-[#1B2028] ">
-    <img src={logo} style={{width:'80px',height:'80px'}}/>
+      <div className="min-h-content w-screen items-center justify-center flex flex-row absolute top-10 bg-[#1B2028] ">
+        <img src={logo} style={{ width: "80px", height: "80px" }} />
 
-    
-    <div className="min-h-content flex flex-col items-center justify-center">
-      <h2 className="text-white">Welcom To The Library of UWU</h2>
-      <p className="text-white">Library Service Live Recorder</p>
+        <div className="min-h-content flex flex-col items-center justify-center">
+          <h2 className="text-white">Welcome To The Library of UWU</h2>
+          <p className="text-white">Library Service Live Recorder</p>
+        </div>
+      </div>
 
+      <div className="bg-slate-900 rounded p-10  bg-opacity-50 w-full">
+        <div className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
+          <Input
+            className="sm:w-[500px]"
+            placeholder="Enter Your ID or Enter Your NIC Number"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+
+          <Button
+            disabled={input.length === 0 || isRefetching || isLoading}
+            onClick={handleClick}
+          >
+            {isLoading ? "Loading" : "Login"}
+          </Button>
+        </div>
+        {!data && input.length > 0 && (
+          <p className="text-red-600 text-sm my-1 text-center">
+            nic does not exist
+          </p>
+        )}
+
+        <p className="text-red-600 text-sm my-1 text-center">{errMsg}</p>
+      </div>
+
+      <div className="h-12 w-screen  absolute bottom-12 bg-[#1B2028] flex items-center justify-center ">
+        <h2 className="text-white text-center">Information Is Power</h2>
+      </div>
     </div>
-    </div>
-    
-    <div className="bg-slate-900 rounded p-10  bg-opacity-50">
-     <form onSubmit={()=>{console.log('hello')}} className="flex items-center justify-center space-x-3"> 
-     <Input className="w-[500px] " placeholder="Enter Your ID or Enter Your NIC Number"/>
-     <Button>Login </Button>
-     </form>
-     </div>
-
-     <div className="h-12 w-screen items-center justify-center flex flex-row absolute bottom-12 bg-[#1B2028] ">
-    
-
-    
-     
-      <h2 className="text-white">"Information Is Power</h2>
-      
-
-   
-    </div>
-     
-    </div>
-   
   );
 };
 
