@@ -5,17 +5,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logo from "../assets/logo.png";
 import { useState } from "react";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const Login = () => {
   const [input, setInput] = useState("");
   const [enabled, setEnabled] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
-  const { data, error, isLoading, isRefetching } = useQuery(
+  const { setUser } = useGlobalContext();
+
+  const { data, isLoading, isRefetching } = useQuery(
     ["user"],
     async () => await getUserByNic(input),
     {
       enabled: enabled,
+      onSuccess: (data) => {
+        setUser(data.nic_number);
+      },
     }
   );
 
