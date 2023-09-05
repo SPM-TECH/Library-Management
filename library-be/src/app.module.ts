@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BooksModule } from './books/books.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { ServicesModule } from './services/services.module';
+import { Service } from './services/entities/service.entity';
 
 @Module({
   imports: [
@@ -17,12 +18,12 @@ import { AuthModule } from './auth/auth.module';
       username: 'root',
       password: '',
       database: 'library_db',
-      entities: [User],
+      entities: [User, Service],
       synchronize: true,
     }),
-    BooksModule,
     UsersModule,
     AuthModule,
+    ServicesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
