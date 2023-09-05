@@ -7,11 +7,10 @@ import Vr from "../assets/Vr.png";
 import { Button } from "@/components/ui/button";
 import { Airplay, BookOpen, BookOpenCheck, GanttChart, Globe, Info, Microscope, MoreHorizontal, Newspaper, Wifi } from "lucide-react";
 import Options from "@/components/options";
-import Drawer from "@/components/drawer";
 
 const options = [
     {
-        icon:<BookOpenCheck/>,
+        icon:<BookOpenCheck size={48}/>,
         name:'Borrow Books',
         color:'bg-gray-600'
     },
@@ -76,10 +75,8 @@ const options = [
 
 export default function Optionpannel() {
   return (
-    <div className="min-h-screen bg-[#31353F] flex flex-row space-x-">
-     
-     <Drawer />
-    
+    <div className="min-h-screen bg-[#31353F] flex flex-row space-x-3">
+        <Drawer/>
       <div className=" " id="selectionpannel">
         <p className="text-white    text-2xl">DashBoard</p>
         <div className="    m-20  grid grid-cols-2 md:grid-cols-3 gap-4 " id="Buttons">
