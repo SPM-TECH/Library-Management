@@ -162,7 +162,7 @@ const datapie = [
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-[#31353F] flex flex-row space-x-3 overflow-hidden">
+    <div className="md:w-44  lg:w-auto min-h-screen bg-[#31353F] flex flex-row space-x-3 overflow-hidden">
       <div className="  bg-[#1B2028]  ">
         <div className="relative flex flex-row top-11 justify-center items-center p-2">
           <img src={logo} className="w-20 h-20" />
@@ -187,9 +187,14 @@ export default function Dashboard() {
          
         
       </div>
+      <div className="flex flex-col">
+        <h1 className="text-white text-3xl p-10 font-bold">Dashboard</h1>
+      
       <div className="grid lg:grid-cols-2 gap-5 m-5 md:grid-cols-1">
+        
          
-          <div className="bg-slate-800    container   rounded-xl flex justify-center items-end ">
+          <div className="bg-slate-800    container   rounded-xl flex flex-col justify-center   ">
+          <h1 className="text-white p-5">Attendance Graph </h1>
             <BarChart width={730} height={250} data={data}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
@@ -200,7 +205,8 @@ export default function Dashboard() {
               <Bar dataKey="uv" fill="#82ca9d" />
             </BarChart>
           </div>
-          <div className="bg-slate-800  container   rounded-xl flex justify-center items-end ">
+          <div className="bg-slate-800  container   rounded-xl flex flex-col justify-center items-center ">
+          <h1 className="text-white p-5">Faculty </h1>
             <PieChart width={330} height={350}>
               <Legend />
               <Pie
@@ -220,7 +226,8 @@ export default function Dashboard() {
             <h1 className="text-white p-5">Attendance </h1>
             <TableDemo/>
           </div>
-          <div className="bg-slate-800   container   rounded-xl flex justify-center  items-center ">
+          <div className="bg-slate-800   container   rounded-xl flex flex-col justify-center  items-center ">
+          <h1 className="text-white p-5">User </h1>
             <PieChart width={330} height={350}>
               <Legend />
               <Pie
@@ -235,6 +242,7 @@ export default function Dashboard() {
             </PieChart>
           </div>
          
+      </div>
       </div>
     </div>
   );
