@@ -19,7 +19,7 @@ import { useQuery, useMutation } from "react-query";
 import { getServices } from "@/api/service";
 import { addOptions } from "@/api/users";
 import { useGlobalContext } from "@/context/GlobalContext";
-import { useNavigate } from "react-router-dom";
+ 
 
 const options = [
   BookOpenCheck,
