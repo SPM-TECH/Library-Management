@@ -1,17 +1,13 @@
 import React from "react";
-import { Button } from "./ui/button";
 import { LayoutDashboard, LogOut, User } from "lucide-react";
 import logo from "../assets/logo.png";
 
 type Props = {
-  
   isOpen: boolean;
-  setIsOpen:Function
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Drawer({  isOpen, setIsOpen }:Props) {
-console.log(isOpen)
-  
+export default function Drawer({ isOpen, setIsOpen }: Props) {
   return (
     <main
       className={
@@ -28,37 +24,24 @@ console.log(isOpen)
         }
       >
         <article className="relative w-80 max-w-lg pb-10 flex flex-col space-y-6  h-full">
-         
-          <div className="relative flex flex-row top-11  items-center p-2">
-          <img src={logo} className="w-20 h-20" />
-          <p className="text-white text-lg">
-            Library Management <br />
-            System
-          </p>
-        </div>
-        <div className=" top-20 relative flex-col flex  gap-y-3">
-          <Button
-            className="text-white bg-blue-600 w-44 fex flex-row justify-start gap-2"
-            variant="ghost"
-          >
-            <LayoutDashboard />
-            Overview
-          </Button>
-          <Button
-            className="text-white  w-44 flex flex-row justify-start gap-2"
-            variant="ghost"
-          >
-            <User />
-            Users
-          </Button>
-          <Button
-            className="text-white  w-44 flex flex-row justify-start gap-2"
-            variant="ghost"
-          >
-            <LogOut />
-            Sign Out
-          </Button>
-        </div>
+          <div className=" flex flex-col  items-center py-4">
+            <img src={logo} className="h-20" />
+            <p className="text-white text">Library Management System</p>
+          </div>
+          <div className="px-4">
+            <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
+              <LayoutDashboard />
+              <p className="text-md font-light">Overview</p>
+            </div>
+            <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
+              <User />
+              <p className="text-md font-light">Users</p>
+            </div>
+            <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
+              <LogOut />
+              <p className="text-md font-light">Sign Out</p>
+            </div>
+          </div>
         </article>
       </section>
       <section

@@ -29,6 +29,11 @@ export class ServicesController {
     return this.servicesService.getServicesCount();
   }
 
+  @Get('/seed')
+  seed() {
+    return this.servicesService.seed();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.servicesService.findOne(+id);

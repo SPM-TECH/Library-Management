@@ -8,6 +8,8 @@ import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { ServicesModule } from './services/services.module';
 import { Service } from './services/entities/service.entity';
+import { AdminModule } from './admin/admin.module';
+import { Login } from './admin/entities/logins.entity';
 
 @Module({
   imports: [
@@ -18,12 +20,13 @@ import { Service } from './services/entities/service.entity';
       username: 'root',
       password: '',
       database: 'library_db',
-      entities: [User, Service],
+      entities: [User, Service, Login],
       synchronize: true,
     }),
     UsersModule,
     AuthModule,
     ServicesModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],

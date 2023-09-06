@@ -4,9 +4,10 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository, MoreThan } from 'typeorm';
 import { User } from './entities/user.entity';
+import { Login } from 'src/admin/entities/logins.entity';
 import { UpdateUserServiceDto } from './dto/update-user-service.dto';
 import { Service } from '../services/entities/service.entity';
-import { endOfYesterday } from 'date-fns';
+import { endOfYesterday, format } from 'date-fns';
 
 @Injectable()
 export class UsersService {
@@ -15,6 +16,8 @@ export class UsersService {
     private usersRepository: Repository<User>,
     @InjectRepository(Service)
     private serviceRepository: Repository<Service>,
+    @InjectRepository(Login)
+    private loginRepository: Repository<Login>,
   ) {}
 
   create(createUserDto: CreateUserDto) {
@@ -46,12 +49,31 @@ export class UsersService {
     return this.usersRepository.delete(id);
   }
 
-  findOneByNIC(nic: string) {
-    return this.usersRepository.findOne({
+  async findOneByNIC(nic: string) {
+    const user = await this.usersRepository.findOne({
       where: {
         nic_number: nic,
       },
     });
+
+    const date_exist = await this.loginRepository.findOne({
+      where: {
+        date: format(new Date(), 'dd-LL-yyyy'),
+      },
+    });
+
+    if (date_exist) {
+      date_exist.count = date_exist.count + 1;
+      await this.loginRepository.save(date_exist);
+    } else {
+      await this.loginRepository.save({
+        date: format(new Date(), 'dd-LL-yyyy'),
+        count: 1,
+      });
+    }
+
+    user.updated_at = new Date();
+    return this.usersRepository.save(user);
   }
 
   async updateOptions(id: string, updateUserServiceDto: UpdateUserServiceDto) {
