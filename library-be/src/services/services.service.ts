@@ -35,4 +35,16 @@ export class ServicesService {
   remove(id: number) {
     return this.serviceRepository.delete(id);
   }
+  async getServicesCount() {
+    const services = await this.serviceRepository.find({
+      relations: {
+        users: true,
+      },
+    });
+    const res = services.map((service) => ({
+      service: service.name,
+      count: service.users.length,
+    }));
+    return res;
+  }
 }

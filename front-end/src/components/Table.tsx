@@ -7,52 +7,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
-];
+import { useQuery } from "react-query";
+import { getAttendance } from "@/api/admin";
+import { format } from "date-fns";
 
 export function TableDemo() {
+  const { data } = useQuery("attendance", getAttendance);
+
   return (
     <Table>
       <TableHeader>
@@ -61,27 +22,22 @@ export function TableDemo() {
           <TableHead className="">Name</TableHead>
           <TableHead className="">Faculty</TableHead>
           <TableHead className="text-right ">Time In</TableHead>
-          <TableHead className="text-right ">Time ouut</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium text-white">
-              {invoice.invoice}
-            </TableCell>
-            <TableCell className="text-lime-500">
-              {invoice.paymentStatus}
-            </TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right text-white">
-              {invoice.totalAmount}
-            </TableCell>
-            <TableCell className="text-right text-white">
-              {invoice.totalAmount}
-            </TableCell>
-          </TableRow>
-        ))}
+        {data &&
+          data.map((user) => (
+            <TableRow key={user.index_number}>
+              <TableCell className="font-medium text-white">
+                {user.index_number}
+              </TableCell>
+              <TableCell className="text-lime-500">{user.user_name}</TableCell>
+              <TableCell>{user.faculty}</TableCell>
+              <TableCell className="text-right text-white">
+                {format(new Date(user.updated_at), "h:mm a")}
+              </TableCell>
+            </TableRow>
+          ))}
       </TableBody>
     </Table>
   );

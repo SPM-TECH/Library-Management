@@ -2,10 +2,13 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL + "/users";
 
-interface User {
+export interface User {
   id: number;
   user_name: string;
   nic_number: string;
+  index_number: string;
+  faculty: string;
+  updated_at: string;
 }
 
 export async function getUsers() {

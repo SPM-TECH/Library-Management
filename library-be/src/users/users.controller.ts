@@ -28,6 +28,16 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @Get('/attendance')
+  getAttendance() {
+    return this.usersService.getAttendance();
+  }
+
+  @Get('/faculty')
+  groupByFaculty() {
+    return this.usersService.groupByFaculty();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);

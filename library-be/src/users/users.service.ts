@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { In, Repository, MoreThan } from 'typeorm';
 import { User } from './entities/user.entity';
 import { UpdateUserServiceDto } from './dto/update-user-service.dto';
 import { Service } from '../services/entities/service.entity';
+import { endOfYesterday } from 'date-fns';
 
 @Injectable()
 export class UsersService {
@@ -67,5 +68,30 @@ export class UsersService {
 
     user.services = services;
     return this.usersRepository.save(user);
+  }
+
+  getAttendance() {
+    return this.usersRepository.find({
+      where: {
+        updated_at: MoreThan(new Date(endOfYesterday())),
+      },
+    });
+  }
+
+  async groupByFaculty() {
+    const science = await this.usersRepository.countBy({ faculty: 'science' });
+    const arts = await this.usersRepository.countBy({ faculty: 'arts' });
+    const management = await this.usersRepository.countBy({
+      faculty: 'management',
+    });
+    const medicine = await this.usersRepository.countBy({
+      faculty: 'medicine',
+    });
+    return {
+      science,
+      arts,
+      management,
+      medicine,
+    };
   }
 }

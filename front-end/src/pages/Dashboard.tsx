@@ -1,11 +1,7 @@
-import logo from "../assets/logo.png";
-import { Legend, PieChart, Pie } from "recharts";
-import { Button } from "@/components/ui/button";
 import AttendanceBarchart from "@/components/charts/AttendanceBarchart";
-
-import { LayoutDashboard, LogOut, User } from "lucide-react";
 import { TableDemo } from "@/components/Table";
 import FacultyPieChart from "@/components/charts/FacultyPieChart";
+import ServicePieChart from "@/components/charts/ServicePieChart";
 
 export default function Dashboard() {
   return (
@@ -68,7 +64,7 @@ export default function Dashboard() {
           <div className="bg-slate-800 rounded-xl">
             <h1 className="text-white p-5">User </h1>
             <div className=" flex items-center justify-center w-full">
-              <FacultyPieChart />
+              <ServicePieChart />
             </div>
           </div>
         </div>
