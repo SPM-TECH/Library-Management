@@ -61,7 +61,7 @@ const Login = () => {
             {isLoading ? "Loading" : "Login"}
           </Button>
         </div>
-        {!data && input.length > 0 && (
+        {enabled && !data && input.length > 0 && (
           <p className="text-red-600 text-sm my-1 text-center">
             nic does not exist
           </p>
