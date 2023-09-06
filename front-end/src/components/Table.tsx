@@ -31,8 +31,12 @@ export function TableDemo() {
               <TableCell className="font-medium text-white">
                 {user.index_number}
               </TableCell>
-              <TableCell className="text-lime-500">{user.user_name}</TableCell>
-              <TableCell>{user.faculty}</TableCell>
+              <TableCell className="font-medium text-white">
+                {user.user_name}
+              </TableCell>
+              <TableCell className="font-medium text-white">
+                {user.faculty}
+              </TableCell>
               <TableCell className="text-right text-white">
                 {format(new Date(user.updated_at), "h:mm a")}
               </TableCell>

@@ -19,7 +19,7 @@ import { useQuery, useMutation } from "react-query";
 import { getServices } from "@/api/service";
 import { addOptions } from "@/api/users";
 import { useGlobalContext } from "@/context/GlobalContext";
- 
+import { useNavigate } from "react-router-dom";
 
 const options = [
   BookOpenCheck,
@@ -33,15 +33,16 @@ const options = [
   Wifi,
   MoreHorizontal,
 ];
- 
+
 export default function Optionpannel() {
   const { data } = useQuery("services", getServices);
   const { selectedServices, user } = useGlobalContext();
+  const navigate = useNavigate();
 
   const optionMutation = useMutation({
     mutationFn: async () => await addOptions(user, selectedServices),
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
+      navigate("/thankyou");
     },
   });
 

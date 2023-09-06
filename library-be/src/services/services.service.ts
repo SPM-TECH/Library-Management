@@ -47,4 +47,31 @@ export class ServicesService {
     }));
     return res;
   }
+  async seed() {
+    const services = [
+      'Borrowing Books',
+      'News Paper Reading',
+      'E Book & ICT',
+      'Reference & Reading',
+      'Research work/support',
+      'Information Commons',
+      'Information Commons',
+      'Periodical/Thesis',
+      'WIFI/Entertainment',
+      'Others',
+    ];
+    try {
+      const promises = services.map((service, index) =>
+        this.serviceRepository.save({ id: index, name: service }),
+      );
+      await Promise.all(promises);
+      return {
+        success: true,
+      };
+    } catch (error) {
+      return {
+        success: false,
+      };
+    }
+  }
 }
