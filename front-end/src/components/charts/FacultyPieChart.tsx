@@ -9,18 +9,22 @@ const FacultyPieChart = () => {
     {
       name: "Science",
       value: data?.science || 0,
+      fill: '#F4BE37'
     },
     {
       name: "Arts",
       value: data?.arts || 0,
+      fill:'#FF9F40'
     },
     {
       name: "Management",
       value: data?.management || 0,
+      fill:'#5388D8'
     },
     {
       name: "Medicine",
       value: data?.medicine || 0,
+      fill:'#0962B4'
     },
   ];
 
