@@ -8,31 +8,7 @@ import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 
 const Thankyou = () => {
-  const [input, setInput] = useState("");
-  const [enabled, setEnabled] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
-
-  const { setUser } = useGlobalContext();
-
-  const { data, isLoading, isRefetching } = useQuery(
-    ["user"],
-    async () => await getUserByNic(input),
-    {
-      enabled: enabled,
-      onSuccess: (data) => {
-        setUser(data.nic_number);
-      },
-    }
-  );
-
-  const handleClick = () => {
-    const validNIC = /\d{9,11}V/i.test(input);
-    if (!validNIC) {
-      setErrMsg("Not a valid nic number");
-      return;
-    }
-    setEnabled(true);
-  };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('./src/assets/bg.png')] bg-cover bg-no-repeat">
@@ -53,7 +29,7 @@ const Thankyou = () => {
         </div>
          
 
-        <p className="text-red-600 text-sm my-1 text-center">{errMsg}</p>
+        
       </div>
 
        

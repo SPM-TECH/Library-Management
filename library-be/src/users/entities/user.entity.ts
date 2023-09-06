@@ -4,8 +4,8 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  UpdateDateColumn,
   ManyToMany,
-  JoinTable,
 } from 'typeorm';
 
 @Entity()
@@ -19,10 +19,18 @@ export class User {
   @Column({ unique: true })
   nic_number: string;
 
+  @Column({ unique: true })
+  index_number: string;
+
+  @Column()
+  faculty: string;
+
   @CreateDateColumn()
   created_at: Date;
 
-  @ManyToMany(() => Service)
-  @JoinTable()
+  @UpdateDateColumn()
+  updated_at: Date;
+
+  @ManyToMany(() => Service, (service) => service.users)
   services: Service[];
 }

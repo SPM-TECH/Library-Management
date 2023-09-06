@@ -24,6 +24,10 @@ export class ServicesController {
   findAll() {
     return this.servicesService.findAll();
   }
+  @Get('/count')
+  getServicesCount() {
+    return this.servicesService.getServicesCount();
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

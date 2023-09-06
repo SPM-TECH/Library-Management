@@ -7,4 +7,12 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   nic_number: string;
+
+  @IsNotEmpty()
+  @IsString()
+  index_number: string;
+
+  @IsNotEmpty()
+  @IsString()
+  faculty: string;
 }

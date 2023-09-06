@@ -1,39 +1,35 @@
 import { Legend, PieChart, Pie, ResponsiveContainer } from "recharts";
-
-const datapie = [
-  {
-    name: "Group A",
-    value: 400,
-  },
-  {
-    name: "Group B",
-    value: 300,
-  },
-  {
-    name: "Group C",
-    value: 300,
-  },
-  {
-    name: "Group D",
-    value: 200,
-  },
-  {
-    name: "Group E",
-    value: 278,
-  },
-  {
-    name: "Group F",
-    value: 189,
-  },
-];
+import { useQuery } from "react-query";
+import { getFaculties } from "@/api/admin";
 
 const FacultyPieChart = () => {
+  const { data } = useQuery("faculty", getFaculties);
+
+  const dataPie = [
+    {
+      name: "Science",
+      value: data?.science || 0,
+    },
+    {
+      name: "Arts",
+      value: data?.arts || 0,
+    },
+    {
+      name: "Management",
+      value: data?.management || 0,
+    },
+    {
+      name: "Medicine",
+      value: data?.medicine || 0,
+    },
+  ];
+
   return (
     <ResponsiveContainer height={350}>
       <PieChart width={500} height={350}>
         <Legend />
         <Pie
-          data={datapie}
+          data={dataPie}
           dataKey="value"
           nameKey="name"
           cx="50%"
