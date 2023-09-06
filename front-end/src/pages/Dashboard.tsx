@@ -11,7 +11,7 @@ export default function Dashboard() {
     const [open,setIsOpen]=useState(false);
 
   return (
-    <div className=" px-4 bg-[#31353F] ">
+    <div className=" px-4 bg-[#31353F] min-h-screen ">
         <Button className="m-2" onClick={()=>setIsOpen(true)}><AlignJustify  /></Button>
         
         
