@@ -17,3 +17,10 @@ export async function getUserByNic(nic: string) {
   const { data } = await axios.get<User>(`${API_URL}/nic/${nic}`);
   return data;
 }
+
+export async function addOptions(nic: string, services: number[]) {
+  const { data } = await axios.patch(`${API_URL}/options/${nic}`, {
+    services,
+  });
+  return data;
+}
