@@ -187,7 +187,7 @@ export default function Dashboard() {
          
         
       </div>
-      <div className="grid lg:grid-cols-2 gap-11 m-10 md:grid-cols-1">
+      <div className="grid lg:grid-cols-2 gap-5 m-5 md:grid-cols-1">
          
           <div className="bg-slate-800    container   rounded-xl flex justify-center items-end ">
             <BarChart width={730} height={250} data={data}>
