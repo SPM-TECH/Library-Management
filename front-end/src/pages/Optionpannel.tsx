@@ -32,7 +32,7 @@ const options = [
   Wifi,
   MoreHorizontal,
 ];
-
+ 
 export default function Optionpannel() {
   const { data } = useQuery("services", getServices);
   const { selectedServices, user } = useGlobalContext();
