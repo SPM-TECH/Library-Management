@@ -2,14 +2,23 @@ import logo from "../assets/logo.png";
 import { Legend, PieChart, Pie } from "recharts";
 import { Button } from "@/components/ui/button";
 import AttendanceBarchart from "@/components/charts/AttendanceBarchart";
-
-import { LayoutDashboard, LogOut, User } from "lucide-react";
+import Drawer from "@/components/Drawer";
+import { AlignJustify, LayoutDashboard, LogOut, User } from "lucide-react";
 import { TableDemo } from "@/components/Table";
 import FacultyPieChart from "@/components/charts/FacultyPieChart";
+import { useState } from "react";
 
 export default function Dashboard() {
+    const [open,setIsOpen]=useState(false);
+
   return (
     <div className=" px-4 bg-[#31353F] ">
+        <Button className="m-2" onClick={()=>setIsOpen(true)}><AlignJustify  /></Button>
+        
+        
+        
+        <Drawer  isOpen={open} setIsOpen={setIsOpen} />
+
       {/* <div className="  bg-[#1B2028]  ">
         <div className="relative flex flex-row top-11 justify-center items-center p-2">
           <img src={logo} className="w-20 h-20" />

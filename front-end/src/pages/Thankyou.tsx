@@ -7,7 +7,7 @@ import logo from "../assets/logo.png";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 
-const Login = () => {
+const Thankyou = () => {
   const [input, setInput] = useState("");
   const [enabled, setEnabled] = useState(false);
   const [errMsg, setErrMsg] = useState("");
@@ -40,41 +40,25 @@ const Login = () => {
         <img src={logo} style={{ width: "80px", height: "80px" }} />
 
         <div className="min-h-content flex flex-col items-center justify-center">
-          <h2 className="text-white">Welcome To The Library of UWU</h2>
+          <h2 className="text-white">Uva Wellassa University Online Library Service  Live Recorder </h2>
           <p className="text-white">Library Service Live Recorder</p>
         </div>
       </div>
 
-      <div className="bg-slate-900 rounded p-10  bg-opacity-50 w-full">
+      <div className="bg-slate-900 rounded-2xl p-10  bg-opacity-50 w-fit">
         <div className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
-          <Input
-            className="sm:w-[500px]"
-            placeholder="Enter Your ID or Enter Your NIC Number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-
-          <Button
-            disabled={input.length === 0 || isRefetching || isLoading}
-            onClick={handleClick}
-          >
-            {isLoading ? "Loading" : "Login"}
-          </Button>
+           <h1 className="text-white text-center text-3xl font-bold">Reading Makes Your Great<br/> Thank you for visiting the library</h1>
+           
+           
         </div>
-        {!data && input.length > 0 && (
-          <p className="text-red-600 text-sm my-1 text-center">
-            nic does not exist
-          </p>
-        )}
+         
 
         <p className="text-red-600 text-sm my-1 text-center">{errMsg}</p>
       </div>
 
-      <div className="h-12 w-screen  absolute bottom-12 bg-[#1B2028] flex items-center justify-center ">
-        <h2 className="text-white text-center">Information Is Power</h2>
-      </div>
+       
     </div>
   );
 };
 
-export default Login;
+export default Thankyou;
