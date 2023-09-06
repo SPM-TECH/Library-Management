@@ -1,8 +1,11 @@
+import { Service } from 'src/services/entities/service.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 @Entity()
@@ -18,4 +21,8 @@ export class User {
 
   @CreateDateColumn()
   created_at: Date;
+
+  @ManyToMany(() => Service)
+  @JoinTable()
+  services: Service[];
 }
