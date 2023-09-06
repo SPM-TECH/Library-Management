@@ -9,7 +9,7 @@ import {
 
 import { useQuery } from "react-query";
 import { getAttendance } from "@/api/admin";
-//import { format } from "date-fns";
+import { format } from "date-fns";
 
 export function TableDemo() {
   const { data } = useQuery("attendance", getAttendance);
