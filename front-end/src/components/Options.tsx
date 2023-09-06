@@ -1,25 +1,17 @@
-import React from 'react'
-import { Button } from './ui/button'
-type Props = {
-    color: string;
-    icon:string ;
-    name :string;
-  };
+import { LucideIcon } from "lucide-react";
 
-export default function Options({icon,color,name}:Props) {
+type Props = {
+  Icon: LucideIcon;
+  name: string;
+};
+
+export default function Options({ Icon, name }: Props) {
   return (
-   
-    
-      
-        <Button
-          variant="outline"
-          className={`${color} rounded-full  w-full flex flex-col`}>
-          
-          {icon}
-          <p className="text-white ">{name}</p>
-        </Button>
-      
-      
-   
-  )
+    <div className="bg-zinc-700 hover:bg-zinc-800 py-4 cursor-pointer transition-colors rounded shadow">
+      <div className="flex flex-col items-center justify-center">
+        <Icon className="h-6 w-6 text-zinc-200 block mb-1" />
+        <p className="text-white ">{name}</p>
+      </div>
+    </div>
+  );
 }
