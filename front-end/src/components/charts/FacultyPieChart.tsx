@@ -1,9 +1,10 @@
 import { Legend, PieChart, Pie, ResponsiveContainer } from "recharts";
 import { useQuery } from "react-query";
 import { getFaculties } from "@/api/admin";
+import { Skeleton } from "../../components/ui/skeleton";
 
 const FacultyPieChart = () => {
-  const { data } = useQuery("faculty", getFaculties);
+  const { data ,isLoading} = useQuery("faculty", getFaculties);
 
   const dataPie = [
     {
@@ -29,7 +30,8 @@ const FacultyPieChart = () => {
   ];
 
   return (
-    <ResponsiveContainer height={350}>
+    <>
+    { isLoading? <SkeletonComp/>:<ResponsiveContainer height={350}>
       <PieChart width={500} height={350}>
         <Legend />
         <Pie
@@ -42,8 +44,19 @@ const FacultyPieChart = () => {
           fill="#8884d8"
         />
       </PieChart>
-    </ResponsiveContainer>
+    </ResponsiveContainer>}
+    </>
   );
 };
 
 export default FacultyPieChart;
+
+const SkeletonComp = () => {
+  return (
+    <div>
+      <div className="flex flex-row lg:gap-x-6 items-end m-10 eas ">
+        <Skeleton className="lg:w-[250px] lg:h-[250px] w-[50px] h-[50px] rounded-full opacity-25    " />
+      </div>
+    </div>
+  );
+};
