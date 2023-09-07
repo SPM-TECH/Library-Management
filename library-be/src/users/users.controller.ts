@@ -38,6 +38,11 @@ export class UsersController {
     return this.usersService.groupByFaculty();
   }
 
+  @Get('/seed')
+  seed() {
+    return this.usersService.seed();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
