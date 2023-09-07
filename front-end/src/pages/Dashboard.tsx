@@ -1,7 +1,7 @@
-import AttendanceBarchart from "@/components/charts/AttendanceBarchart";
-import { TableDemo } from "@/components/Table";
-import FacultyPieChart from "@/components/charts/FacultyPieChart";
-import ServicePieChart from "@/components/charts/ServicePieChart";
+import AttendanceBarchart from "../components/charts/AttendanceBarchart";
+import { TableDemo } from "../components/Table";
+import FacultyPieChart from "../components/charts/FacultyPieChart";
+import ServicePieChart from "../components/charts/ServicePieChart";
 
 export default function Dashboard() {
   return (

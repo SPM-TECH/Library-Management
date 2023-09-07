@@ -5,10 +5,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "../components/ui/table";
 
 import { useQuery } from "react-query";
-import { getAttendance } from "@/api/admin";
+import { getAttendance } from "../api/admin";
 import { format } from "date-fns";
 
 export function TableDemo() {
