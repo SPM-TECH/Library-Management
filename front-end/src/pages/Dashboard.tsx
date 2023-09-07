@@ -11,7 +11,7 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-4 w-full">
           <div className="bg-slate-800 rounded-xl">
-            <h1 className="text-white p-5">Attendance Graph </h1>
+            <h1 className="text-white p-5">Users </h1>
             <div className=" flex items-center justify-center w-full px-4">
               <AttendanceBarchart />
             </div>
@@ -24,13 +24,13 @@ export default function Dashboard() {
           </div>
 
           <div className="bg-slate-800 rounded-xl">
-            <h1 className="text-white p-5">Attendance </h1>
+            <h1 className="text-white p-5">Visitors </h1>
             <div className=" flex items-center justify-center w-full px-4">
               <TableDemo />
             </div>
           </div>
           <div className="bg-slate-800 rounded-xl">
-            <h1 className="text-white p-5">User </h1>
+            <h1 className="text-white p-5">Services </h1>
             <div className=" flex items-center justify-center w-full">
               <ServicePieChart />
             </div>
