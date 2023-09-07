@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import { getUserByNic } from "../api/users";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import logo from "../assets/logo.png";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import logo from "/logo.png";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 
@@ -34,7 +34,7 @@ const Login = () => {
     setEnabled(true);
   };
 
-  const bg='/images/bg.png'
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('/bg.png')] bg-cover bg-no-repeat">

@@ -1,10 +1,10 @@
 import Login from "./pages/Login";
-import Optionpannel from "./pages/Optionpannel";
+import OptionPanelPage from "./pages/OptionPanelPage";
 import { useGlobalContext } from "./context/GlobalContext";
 
 function App() {
   const { user } = useGlobalContext();
-  return <div>{!user ? <Login /> : <Optionpannel />}</div>;
+  return <div>{!user ? <Login /> : <OptionPanelPage />}</div>;
 }
 
 export default App;

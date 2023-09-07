@@ -10,7 +10,7 @@ import {
 } from "recharts";
 
 import { useQuery } from "react-query";
-import { loginCount } from "@/api/admin";
+import { loginCount } from "../../api/admin";
 
 const AttendanceBarchart = () => {
   const { data } = useQuery("loginCount", loginCount);

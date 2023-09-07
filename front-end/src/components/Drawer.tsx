@@ -1,6 +1,5 @@
-import React from "react";
 import { LayoutDashboard, LogOut, User } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "/logo.png";
 
 type Props = {
   isOpen: boolean;
