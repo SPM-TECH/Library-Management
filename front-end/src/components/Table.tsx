@@ -10,12 +10,14 @@ import {
 import { useQuery } from "react-query";
 import { getAttendance } from "../api/admin";
 import { format } from "date-fns";
+import { Skeleton } from "../components/ui/skeleton"
 
 export function TableDemo() {
-  const { data } = useQuery("attendance", getAttendance);
+  const { data,isLoading } = useQuery("attendance", getAttendance);
 
   return (
-    <Table>
+    <> 
+   { isLoading ? <SkeletonComp/>: <Table>
       <TableHeader>
         <TableRow>
           <TableHead className="">UserId</TableHead>
@@ -43,6 +45,32 @@ export function TableDemo() {
             </TableRow>
           ))}
       </TableBody>
-    </Table>
+    </Table>}
+    </>
   );
+}
+
+
+const SkeletonComp=()=>{
+  return(
+       
+    <div >
+    
+      <div className="flex flex-col lg:gap-y-10 items-end m-10  ">
+        
+        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
+        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
+        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
+        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
+        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
+        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
+        <Skeleton className="lg:h-[20px] -[10px] w-[850px] rounded opacity-25" />
+
+        </div>
+        </div>
+      
+
+  
+
+  )
 }
