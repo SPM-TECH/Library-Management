@@ -14,14 +14,14 @@ import { Login } from './admin/entities/logins.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'library_db',
+      type: 'postgres',
+       
       entities: [User, Service, Login],
       synchronize: true,
+      url:'postgres://library_managment_user:2jpyJq2lsqb4TNIcubobDQIMRcz9Eeel@dpg-cjsmsoj6fquc739sh8rg-a.oregon-postgres.render.com/library_managment',
+      ssl:{
+        rejectUnauthorized:true
+      }
     }),
     UsersModule,
     AuthModule,
