@@ -4,7 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository, MoreThan } from 'typeorm';
 import { User } from './entities/user.entity';
-import { Login } from 'src/admin/entities/logins.entity';
+import { Login } from '../admin/entities/logins.entity';
 import { UpdateUserServiceDto } from './dto/update-user-service.dto';
 import { Service } from '../services/entities/service.entity';
 import { endOfYesterday, format } from 'date-fns';
