@@ -18,8 +18,9 @@ import { addOptions } from "@/api/users";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
-import { Textarea } from "../components/ui/textarea"
-
+import { Textarea } from "../components/ui/textarea";
+import { useState } from "react";
+import { addFeedback } from "@/api/feedback";
 
 const options = [
   BookOpenCheck,
@@ -35,6 +36,9 @@ const options = [
 ];
 
 export default function Optionpannel() {
+  const [feedback, setFeedback] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+
   const { data } = useQuery("services", getServices);
   const { selectedServices, user, setUser } = useGlobalContext();
   const navigate = useNavigate();
@@ -47,10 +51,13 @@ export default function Optionpannel() {
     },
   });
 
-
-  const handleCommentSubmit=()=>{
-    
-  }
+  const feedbackMutation = useMutation({
+    mutationFn: async () => await addFeedback({ content: feedback }, user),
+    onSuccess: () => {
+      setFeedback("");
+      setSuccessMsg("Successfully posted your feedback");
+    },
+  });
 
   return (
     <div>
@@ -83,14 +90,31 @@ export default function Optionpannel() {
             )}
             {optionMutation.isLoading ? "Submitting.." : "Submit Your Choices"}
           </Button>
-
-         
         </div>
-        <form onSubmit={()=>handleCommentSubmit()} className=" gap-3 items-center flex flex-col">
-          <Textarea placeholder="Enter your Feedback About Our Service" className="w-[700px]"/>
-          <Button type="submit">Submit</Button>
 
+        <div className="py-1 px-4 mb-6">
+          <h5 className="text-white text-lg">Give us a feedback</h5>
+          <form className=" gap-3 items-center flex flex-col">
+            <Textarea
+              placeholder="Enter your Feedback About Our Services"
+              className="w-full sm:w-[600px]"
+              rows={6}
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+            />
+            <Button
+              onClick={() => feedbackMutation.mutate()}
+              className="w-[250px]"
+              disabled={feedback.length === 0 || feedbackMutation.isLoading}
+            >
+              {feedbackMutation.isLoading && (
+                <Loader2 className="animate-spin mr-1" />
+              )}
+              {feedbackMutation.isLoading ? "Submitting.." : "Submit"}
+            </Button>
           </form>
+          <p className="text-lime-400 my-1 text-sm">{successMsg}</p>
+        </div>
       </div>
     </div>
   );

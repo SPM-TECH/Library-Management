@@ -1,4 +1,3 @@
-import Layout from "../components/Layout";
 import Optionpannel from "./Optionpannel";
 
 const OptionPanelPage = () => {
