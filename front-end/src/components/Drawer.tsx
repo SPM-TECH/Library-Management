@@ -31,7 +31,7 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
           <div className="px-4">
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <LayoutDashboard />
-              <Link to={""} className="text-md font-light">Overview</Link>
+              <Link to={"/Dashboard"} className="text-md font-light">Dashboard</Link>
             </div>
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <User />
