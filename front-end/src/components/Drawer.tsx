@@ -1,5 +1,6 @@
 import { LayoutDashboard, LogOut, User } from "lucide-react";
 import logo from "/logo.png";
+import { Link } from "react-router-dom";
 
 type Props = {
   isOpen: boolean;
@@ -30,15 +31,16 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
           <div className="px-4">
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <LayoutDashboard />
-              <p className="text-md font-light">Overview</p>
+              <Link to={""} className="text-md font-light">Overview</Link>
             </div>
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <User />
-              <p className="text-md font-light">Users</p>
+              <Link to={"/users"} className="text-md font-light"> Users</Link>
+              
             </div>
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <LogOut />
-              <p className="text-md font-light">Sign Out</p>
+              <Link to={'/'} className="text-md font-light">Sign Out</Link>
             </div>
           </div>
         </article>

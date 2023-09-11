@@ -11,14 +11,36 @@ import { useQuery } from "react-query";
 import { getAttendance } from "../api/admin";
 import { format } from "date-fns";
 import { Skeleton } from "../components/ui/skeleton"
+import { Button } from "./ui/button";
+import { toExcel } from 'to-excel';  
 
 export function TableDemo() {
   const { data,isLoading } = useQuery("attendance", getAttendance);
   console.log(data)
 
+
+
+  var headers = [
+    { label: 'ID', field: 'id' },
+    { label: 'User name', field: 'user_name' },
+    { label: 'NIC', field: 'nic_number' },
+    { label: 'Index Number', field: 'index_number' },
+    { label: 'Faculty', field: 'faculty' },
+    { label: 'Created', field: 'created_at' },
+    { label: 'updated_at', field: 'updated_at' }
+]
+
+
+const handleClick=(data:any)=>{
+  var content = toExcel.exportXLS( headers, data, 'filename' );
+
+}
+
   return (
     <> 
-   { isLoading ? <SkeletonComp/>: <Table>
+   { isLoading ? <SkeletonComp/>: <div className="w-full flex flex-col">
+    <Button onClick={()=>handleClick(data)} className="w-52">Click to download csv </Button>
+    <Table>
       <TableHeader>
         <TableRow>
           <TableHead className="">UserId</TableHead>
@@ -46,7 +68,9 @@ export function TableDemo() {
             </TableRow>
           ))}
       </TableBody>
-    </Table>}
+    </Table>
+    </div>
+    }
     </>
   );
 }

@@ -53,6 +53,7 @@ const UsersAddpage = () => {
       <div className="min-h-screen flex items-center justify-center   bg-cover bg-no-repeat">
         <div className=" rounded p-10  bg-opacity-50 w-full">
           <div className="flex flex-col p-6 space-y-4 items-center justify-center    sm:px-32 w-full">
+      
             <Input
               name="nic_number"
               className="sm:w-[500px]"
