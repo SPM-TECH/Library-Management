@@ -84,30 +84,25 @@ const UsersAddpage = () => {
                   <SelectValue placeholder="Faculty" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Faculty of Animal Science & Export Agriculture">
-                    Faculty of Animal Science & Export Agriculture
+                  <SelectItem value="Animal Science & Export Agriculture">
+                    Animal Science & Export Agriculture
                   </SelectItem>
                   <SelectItem
-                    value="Faculty of Applied Sciences
+                    value="Applied Sciences
 "
                   >
-                    Faculty of Applied Sciences
+                    Applied Sciences
                   </SelectItem>
                   <SelectItem
-                    value="Faculty of Management
+                    value="Management
 "
                   >
-                    Faculty of Management
+                  Management
                   </SelectItem>
-                  <SelectItem value="Faculty of Technological Studies">
-                    Faculty of Technological Studies
+                  <SelectItem value="Technological Studies">
+                    Technological Studies
                   </SelectItem>
-                  <SelectItem
-                    value="Faculty of Medicine
-"
-                  >
-                    Faculty of Medicine
-                  </SelectItem>
+                  <SelectItem value="Medicine">Medicine</SelectItem>
                 </SelectContent>
               </Select>
 

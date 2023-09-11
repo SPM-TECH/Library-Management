@@ -23,15 +23,16 @@ const FacultyPieChart = () => {
       fill: "#5388D8",
     },
     {
+      name: "Technological Studies",
+      value: data?.medicine || 0,
+      fill:'#0962B4'
+    },
+    {
       name: "Medicine",
       value: data?.medicine || 0,
       fill: "#0962B4",
     },
-    {
-      name: "Technological Studies",
-      value: data?.techno_studies || 0,
-      fill: "#096211",
-    },
+     
   ];
 
   return (
