@@ -30,6 +30,7 @@ export function TableDemo() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (data: any) => {
     toExcel.exportXLS(headers, data, "filename");
+
   };
 
   return (
@@ -38,8 +39,8 @@ export function TableDemo() {
         <SkeletonComp />
       ) : (
         <div className="w-full flex flex-col">
-          <Button onClick={() => handleClick(data)} className="w-52">
-            Click to download csv{" "}
+          <Button onClick={() => handleClick(data)} className="w-52" >
+            Click to download Report{" "}
           </Button>
           <Table>
             <TableHeader>

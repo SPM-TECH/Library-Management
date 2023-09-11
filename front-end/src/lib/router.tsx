@@ -3,6 +3,8 @@ import App from "@/App";
 import Thankyou from "@/pages/Thankyou";
 import DashboardPage from "@/pages/DashboardPage";
 import UsersAddpage from "@/pages/UsersAddpage";
+import Feedbacks from "@/pages/Feedbacks";
+import AdminLogin from "@/pages/AdminLoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -21,5 +23,13 @@ export const router = createBrowserRouter([
   {
     path: "/Users",
     element: <UsersAddpage />,
+  },
+  {
+    path: "/Feedbacks",
+    element: <Feedbacks />,
+  },
+  {
+    path: "/Admin",
+    element: <AdminLogin />,
   },
 ]);

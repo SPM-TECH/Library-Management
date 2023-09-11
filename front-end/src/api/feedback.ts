@@ -15,3 +15,8 @@ export async function addFeedback(
   const { data } = await axios.post(`${API_URL}/${nic_number}`, feedback);
   return data;
 }
+
+export async function getFeedbacks() {
+  const { data } = await axios.get<IFeedback[]>(API_URL);
+  return data;
+}
