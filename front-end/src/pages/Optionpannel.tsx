@@ -12,8 +12,7 @@ import {
   MoreHorizontal,
 } from "lucide-react";
 import Options from "../components/Options";
-import { useQuery, useMutation } from "react-query";
-import { getServices } from "@/api/service";
+import { useMutation } from "react-query";
 import { addOptions } from "@/api/users";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +20,8 @@ import { Loader2 } from "lucide-react";
 import { Textarea } from "../components/ui/textarea";
 import { useState } from "react";
 import { addFeedback } from "@/api/feedback";
+import { useRouteLoaderData } from "react-router-dom";
+import { Service } from "@/api/service";
 
 const options = [
   BookOpenCheck,
@@ -39,7 +40,8 @@ export default function Optionpannel() {
   const [feedback, setFeedback] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  const { data } = useQuery("services", getServices);
+  const data = useRouteLoaderData("dashboard") as Service[];
+
   const { selectedServices, user, setUser } = useGlobalContext();
   const navigate = useNavigate();
 
@@ -61,10 +63,9 @@ export default function Optionpannel() {
 
   return (
     <div>
-      <div className="w-full px-4 flex flex-col items-center gap-y-5">
-        <h4 className="text-white my-2">
-          Welcome {user}, Please select your options
-        </h4>
+      <div className="w-full px-4 flex flex-col items-center">
+        <h4 className="text-white mt-3 mb-1">Welcome {user},</h4>
+        <h5 className="text-slate-200 ">Please select your options</h5>
         <div className=" w-full   mt-8 grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-4">
           {data &&
             data.map((item, index) => {

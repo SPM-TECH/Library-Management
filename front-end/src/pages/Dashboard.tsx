@@ -11,26 +11,26 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-4 w-full">
           <div className="bg-slate-800 rounded-xl  shadow-md shadow-slate-900 ">
-            <h1 className="text-white p-5">Users </h1>
+            <h1 className="text-white p-5">Users per day </h1>
             <div className=" flex items-center justify-center w-full px-4">
               <AttendanceBarchart />
             </div>
           </div>
           <div className="bg-slate-800 rounded-xl shadow-md shadow-slate-900 ">
-            <h1 className="text-white p-5">Faculty </h1>
+            <h1 className="text-white p-5">Faculty of users </h1>
             <div className=" flex items-center justify-center w-full px-4">
               <FacultyPieChart />
             </div>
           </div>
 
           <div className="bg-slate-800 rounded-xl shadow-md shadow-slate-900 ">
-            <h1 className="text-white p-5">Visitors </h1>
+            <h1 className="text-white p-5">Recent users </h1>
             <div className=" flex items-center justify-center w-full px-4">
               <TableDemo />
             </div>
           </div>
           <div className="bg-slate-800 rounded-xl shadow-md shadow-slate-900 ">
-            <h1 className="text-white p-5">Services </h1>
+            <h1 className="text-white p-5">Services subscribe to </h1>
             <div className=" flex items-center justify-center w-full">
               <ServicePieChart />
             </div>

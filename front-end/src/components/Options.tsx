@@ -27,14 +27,15 @@ export default function Options({ Icon, name, id }: Props) {
   return (
     <div
       className={cn(
-        ` hover:bg-zinc-800 py-4 cursor-pointer transition-colors rounded shadow ${
-          selected ? "bg-zinc-800 border-[1px] border-white" : "bg-zinc-700"
+        ` hover:bg-zinc-800 py-4 cursor-pointer transition-colors rounded shadow h-[85px] ${
+          selected ? "bg-zinc-800 border-[1px] border-white" : "bg-zinc-700 "
         }`
       )}
       onClick={() => onClick()}
     >
       <div className="flex flex-col items-center justify-center">
         <Icon className="h-6 w-6 text-zinc-200 block mb-1" />
+
         <p className="text-white ">{name}</p>
       </div>
     </div>
