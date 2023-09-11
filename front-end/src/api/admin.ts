@@ -17,10 +17,11 @@ export async function getAttendance() {
 
 export async function getFaculties() {
   const { data } = await axios.get<{
-    science: number;
-    arts: number;
+    animal_science: number;
     management: number;
+    applied_science: number;
     medicine: number;
+    techno_studies: number;
   }>(`${API_URL}/faculty`);
   return data;
 }
