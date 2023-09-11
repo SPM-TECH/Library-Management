@@ -3,26 +3,39 @@ import { useQuery } from "react-query";
 import { getServicesCount } from "@/api/admin";
 import randomColor from "randomcolor";
 import { Skeleton } from "../../components/ui/skeleton";
+import { types } from "util";
 
 const ServicePieChart = () => {
   const { data, isLoading } = useQuery("services", getServicesCount);
+  let datapie;
+
+  if (data) {
+    datapie = data?.map((item) => {
+      return { name: item?.service, value: item?.count, fill: randomColor() };
+    });
+  }
 
   return (
     <div className="flex flex-auto justify-center ">
       {isLoading ? (
         <SkeletonComp />
       ) : (
-        <ResponsiveContainer height={550}  >
-          <PieChart width={500} height={350} >
-            <Legend layout="vertical" verticalAlign="middle" align="right" wrapperStyle={{fontSize: "20px"}} />
+        <ResponsiveContainer height={550}>
+          <PieChart width={500} height={350}>
+            <Legend  
+              layout="horizontal"
+              verticalAlign="bottom"
+              align="center"
+              wrapperStyle={{ fontSize: "15px", marginTop: 50,columnCount:4,columnGap:20,display:"flex",flexDirection:"row",columnSpan:"revert" }}
+            />
             <Pie
-              data={data}
-              dataKey="count"
-              nameKey="service"
-              cx="65%"
-              cy="60%"
-              outerRadius={200}
-              fill="#8884d8"
+              data={datapie}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={190}
+              fill="#8884"
             />
           </PieChart>
         </ResponsiveContainer>

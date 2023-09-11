@@ -1,6 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import logo from "/logo.png";
 
 const Thankyou = () => {
+
+  const navigate=useNavigate();
+
+  setTimeout(()=>navigate('/'),2000)
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('/bg.png')] bg-cover bg-no-repeat">
       <div className="min-h-content w-screen items-center justify-center flex flex-row absolute top-10 bg-[#1B2028] ">

@@ -21,6 +21,14 @@ export async function getUserByNic(nic: string) {
   return data;
 }
 
+export async function addUser(Data:Object) {
+  //console.log(Data)
+const { data } = await axios.post<User>(`${API_URL}/`,{
+  Data 
+});
+  return data;
+}
+
 export async function addOptions(nic: string, services: number[]) {
   const { data } = await axios.patch(`${API_URL}/options/${nic}`, {
     services,

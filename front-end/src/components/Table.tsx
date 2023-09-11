@@ -14,6 +14,7 @@ import { Skeleton } from "../components/ui/skeleton"
 
 export function TableDemo() {
   const { data,isLoading } = useQuery("attendance", getAttendance);
+  console.log(data)
 
   return (
     <> 
