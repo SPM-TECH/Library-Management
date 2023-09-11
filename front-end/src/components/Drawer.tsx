@@ -40,6 +40,10 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
             </div>
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <LogOut />
+              <Link to={'/Feedbacks'} className="text-md font-light">Feedbacks</Link>
+            </div>
+            <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
+              <LogOut />
               <Link to={'/'} className="text-md font-light">Sign Out</Link>
             </div>
           </div>
