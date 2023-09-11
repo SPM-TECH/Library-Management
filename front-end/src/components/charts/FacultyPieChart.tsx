@@ -8,12 +8,12 @@ const FacultyPieChart = () => {
 
   const dataPie = [
     {
-      name: "Science",
+      name: "Animal Science & Export Agriculture",
       value: data?.science || 0,
       fill: '#F4BE37'
     },
     {
-      name: "Arts",
+      name: "Applied Sciences",
       value: data?.arts || 0,
       fill:'#FF9F40'
     },
@@ -21,6 +21,11 @@ const FacultyPieChart = () => {
       name: "Management",
       value: data?.management || 0,
       fill:'#5388D8'
+    },
+    {
+      name: "Technological Studies",
+      value: data?.medicine || 0,
+      fill:'#0962B4'
     },
     {
       name: "Medicine",
@@ -33,7 +38,18 @@ const FacultyPieChart = () => {
     <>
     { isLoading? <SkeletonComp/>:<ResponsiveContainer height={350}>
       <PieChart width={500} height={350}>
-        <Legend />
+        <Legend layout="horizontal"
+              verticalAlign="bottom"
+              align="center"
+              wrapperStyle={{
+                fontSize: "15px",
+                marginTop: 50,
+                columnCount: 4,
+                columnGap: 20,
+                display: "flex",
+                flexDirection: "row",
+                columnSpan: "revert",
+              }}/>
         <Pie
           data={dataPie}
           dataKey="value"

@@ -17,6 +17,7 @@ import { getServices } from "@/api/service";
 import { addOptions } from "@/api/users";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 const options = [
   BookOpenCheck,
@@ -33,12 +34,13 @@ const options = [
 
 export default function Optionpannel() {
   const { data } = useQuery("services", getServices);
-  const { selectedServices, user } = useGlobalContext();
+  const { selectedServices, user, setUser } = useGlobalContext();
   const navigate = useNavigate();
 
   const optionMutation = useMutation({
     mutationFn: async () => await addOptions(user, selectedServices),
     onSuccess: () => {
+      setUser("");
       navigate("/thankyou");
     },
   });
@@ -66,10 +68,13 @@ export default function Optionpannel() {
           <Button
             size="lg"
             disabled={selectedServices.length === 0}
-            className="bg-blue-800"
+            className="w-[300px]"
             onClick={() => optionMutation.mutate()}
           >
-            Submit Your Choices
+            {optionMutation.isLoading && (
+              <Loader2 className="animate-spin mr-2" />
+            )}
+            {optionMutation.isLoading ? "Submitting.." : "Submit Your Choices"}
           </Button>
         </div>
       </div>
