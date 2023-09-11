@@ -25,16 +25,14 @@ const FacultyPieChart = () => {
     {
       name: "Technological Studies",
       value: data?.techno_studies || 0,
-      fill:'#0962B4'
+      fill: "#0962B4",
     },
     {
       name: "Medicine",
       value: data?.medicine || 0,
-      fill: "#0962B4",
+      fill: "#096211",
     },
-   
   ];
-  console.log(data)
 
   return (
     <>
@@ -66,7 +64,7 @@ const SkeletonComp = () => {
   return (
     <div>
       <div className="flex flex-row lg:gap-x-6 items-end m-10 eas ">
-        <Skeleton className="lg:w-[250px] lg:h-[250px] w-[50px] h-[50px] rounded-full opacity-25    " />
+        <Skeleton className="lg:w-[350px] lg:h-[350px] w-[200px] h-[200px] rounded-full opacity-25    " />
       </div>
     </div>
   );

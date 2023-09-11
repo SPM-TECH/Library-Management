@@ -79,14 +79,14 @@ export function TableDemo() {
 const SkeletonComp = () => {
   return (
     <div>
-      <div className="flex flex-col lg:gap-y-10 items-end m-10  ">
-        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
-        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
-        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
-        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
-        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
-        <Skeleton className="lg:h-[20px] h-[10px] w-[850px] rounded opacity-25" />
-        <Skeleton className="lg:h-[20px] -[10px] w-[850px] rounded opacity-25" />
+      <div className="flex flex-col gap-y-6   ">
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] lg:w-[500px] rounded opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded  lg:w-[500px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[500px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[500px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[500px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[500px] opacity-25" />
+        <Skeleton className="lg:h-[40px] -[30px] w-[400px] rounded lg:w-[500px] opacity-25" />
       </div>
     </div>
   );
