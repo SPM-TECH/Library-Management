@@ -12,9 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Button className="m-2" onClick={() => setIsOpen(true)}>
           <AlignJustify />
         </Button>
-        <Link to="/dashboard" className="text-white">
-          Dashboard
-        </Link>
+       
       </div>
       <Drawer isOpen={open} setIsOpen={setIsOpen} />
       {children}

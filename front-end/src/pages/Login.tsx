@@ -43,7 +43,7 @@ const Login = () => {
         <img src={logo} style={{ width: "80px", height: "80px" }} />
 
         <div className="min-h-content flex flex-col items-center justify-center">
-          <h2 className="text-white">Welcome To The Library of UWU</h2>
+          <h2 className="text-white ">Welcome To The Library of UWU</h2>
           <p className="text-white">Library Service Live Recorder</p>
         </div>
       </div>
