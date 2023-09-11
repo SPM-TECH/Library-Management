@@ -6,6 +6,7 @@ import { Input } from "../components/ui/input";
 import logo from "/logo.png";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
   const [input, setInput] = useState("");
@@ -48,7 +49,8 @@ const Login = () => {
       </div>
 
       <div className="bg-slate-900 rounded p-10  bg-opacity-50 w-full">
-        <div className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
+         
+          <form className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
           <Input
             className="sm:w-[500px]"
             placeholder="Enter Your ID or Enter Your NIC Number"
@@ -59,10 +61,15 @@ const Login = () => {
           <Button
             disabled={input.length === 0 || isRefetching || isLoading}
             onClick={handleClick}
+            className="w-[200px]"
           >
+            { isLoading && (
+              <Loader2 className="animate-spin mr-2" />
+            )}
             {isLoading ? "Loading" : "Login"}
           </Button>
-        </div>
+          </form>
+         
         {enabled && !isLoading && !data && input.length > 0 && (
           <p className="text-red-600 text-sm my-1 text-center">
             nic does not exist

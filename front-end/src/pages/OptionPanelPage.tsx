@@ -3,9 +3,9 @@ import Optionpannel from "./Optionpannel";
 
 const OptionPanelPage = () => {
   return (
-    <Layout>
+    <div className="  bg-[#31353F] min-h-screen  ">
       <Optionpannel />
-    </Layout>
+    </div>
   );
 };
 

@@ -24,7 +24,7 @@ const FacultyPieChart = () => {
     },
     {
       name: "Technological Studies",
-      value: data?.medicine || 0,
+      value: data?.techno_studies || 0,
       fill:'#0962B4'
     },
     {
@@ -32,8 +32,9 @@ const FacultyPieChart = () => {
       value: data?.medicine || 0,
       fill: "#0962B4",
     },
-     
+   
   ];
+  console.log(data)
 
   return (
     <>
