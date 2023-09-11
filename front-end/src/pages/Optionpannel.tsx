@@ -18,6 +18,8 @@ import { addOptions } from "@/api/users";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
+import { Textarea } from "../components/ui/textarea"
+
 
 const options = [
   BookOpenCheck,
@@ -45,9 +47,14 @@ export default function Optionpannel() {
     },
   });
 
+
+  const handleCommentSubmit=()=>{
+    
+  }
+
   return (
     <div>
-      <div className="w-full px-4">
+      <div className="w-full px-4 flex flex-col items-center gap-y-5">
         <h4 className="text-white my-2">
           Welcome {user}, Please select your options
         </h4>
@@ -76,7 +83,14 @@ export default function Optionpannel() {
             )}
             {optionMutation.isLoading ? "Submitting.." : "Submit Your Choices"}
           </Button>
+
+         
         </div>
+        <form onSubmit={()=>handleCommentSubmit()} className=" gap-3 items-center flex flex-col">
+          <Textarea placeholder="Enter your Feedback About Our Service" className="w-[700px]"/>
+          <Button type="submit">Submit</Button>
+
+          </form>
       </div>
     </div>
   );
