@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import { getServicesCount } from "@/api/admin";
 import randomColor from "randomcolor";
 import { Skeleton } from "../../components/ui/skeleton";
-import { types } from "util";
 
 const ServicePieChart = () => {
   const { data, isLoading } = useQuery("services", getServicesCount);
@@ -22,11 +21,19 @@ const ServicePieChart = () => {
       ) : (
         <ResponsiveContainer height={550}>
           <PieChart width={500} height={350}>
-            <Legend  
+            <Legend
               layout="horizontal"
               verticalAlign="bottom"
               align="center"
-              wrapperStyle={{ fontSize: "15px", marginTop: 50,columnCount:4,columnGap:20,display:"flex",flexDirection:"row",columnSpan:"revert" }}
+              wrapperStyle={{
+                fontSize: "15px",
+                marginTop: 50,
+                columnCount: 4,
+                columnGap: 20,
+                display: "flex",
+                flexDirection: "row",
+                columnSpan: "revert",
+              }}
             />
             <Pie
               data={datapie}

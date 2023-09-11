@@ -21,11 +21,8 @@ export async function getUserByNic(nic: string) {
   return data;
 }
 
-export async function addUser(Data:Object) {
-  //console.log(Data)
-const { data } = await axios.post<User>(`${API_URL}/`,{
-  Data 
-});
+export async function addUser(Data: Partial<User>) {
+  const { data } = await axios.post<User>(`${API_URL}/`, Data);
   return data;
 }
 
