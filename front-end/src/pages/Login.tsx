@@ -4,7 +4,7 @@ import { getUserByNic } from "../api/users";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import logo from "/logo.png";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { Loader2 } from "lucide-react";
 import useScanDetection from 'use-scan-detection'
@@ -35,7 +35,7 @@ const Login = () => {
     }
     setEnabled(true);
   };
-  
+
 
   useScanDetection({
     onComplete:(val:any)=>{
