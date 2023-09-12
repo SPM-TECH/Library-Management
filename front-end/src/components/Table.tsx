@@ -13,6 +13,7 @@ import { format } from "date-fns";
 import { Skeleton } from "../components/ui/skeleton";
 import { Button } from "./ui/button";
 import { toExcel } from "to-excel";
+import { TablePagination } from "./TablePagination";
 
 export function TableDemo() {
   const { data, isLoading } = useQuery("attendance", getAttendance);
@@ -33,6 +34,8 @@ export function TableDemo() {
 
   };
 
+console.log(data)
+
   return (
     <>
       {isLoading ? (
@@ -42,35 +45,7 @@ export function TableDemo() {
           <Button onClick={() => handleClick(data)} className="w-52" >
             Click to download Report{" "}
           </Button>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="">UserId</TableHead>
-                <TableHead className="">Name</TableHead>
-                <TableHead className="">Faculty</TableHead>
-                <TableHead className="text-right ">Time In</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data &&
-                data.map((user) => (
-                  <TableRow key={user.index_number}>
-                    <TableCell className="font-medium text-white">
-                      {user.index_number}
-                    </TableCell>
-                    <TableCell className="font-medium text-white">
-                      {user.user_name}
-                    </TableCell>
-                    <TableCell className="font-medium text-white">
-                      {user.faculty}
-                    </TableCell>
-                    <TableCell className="text-right text-white">
-                      {format(new Date(user.updated_at), "h:mm a")}
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
+         <TablePagination data={data}/>
         </div>
       )}
     </>
