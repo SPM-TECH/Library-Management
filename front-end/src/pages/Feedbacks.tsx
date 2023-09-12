@@ -35,14 +35,15 @@ export default function Feedbacks() {
 const SkeletonComp = () => {
   return (
     <div>
-      <div className="flex flex-col lg:gap-y-20 items-end m-10  ">
-        <Skeleton className="lg:h-[40px] h-[10px] w-full rounded opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[10px] w-full  rounded opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[10px] w-full rounded opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[10px] w-full rounded opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[10px] w-full rounded opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[10px] w-full rounded opacity-25" />
-        <Skeleton className="lg:h-[40px] -[10px] w-full rounded opacity-25" />
+      <div className=" lg:gap-10 gap-10 items-end m-10 p-10 grid grid-cols-2 ">
+        <Skeleton className="lg:h-[100px] h-[50px] w-full rounded opacity-25" />
+        <Skeleton className="lg:h-[100px] h-[50px] w-full  rounded opacity-25" />
+        <Skeleton className="lg:h-[100px] h-[50px] w-full rounded opacity-25" />
+        <Skeleton className="lg:h-[100px] h-[50px] w-full rounded opacity-25" />
+        <Skeleton className="lg:h-[100px] h-[50px] w-full rounded opacity-25" />
+        <Skeleton className="lg:h-[100px] h-[50px] w-full rounded opacity-25" />
+        <Skeleton className="lg:h-[100px] h-[50px] w-full rounded opacity-25" />
+        <Skeleton className="lg:h-[100px] h-[50px] w-full rounded opacity-25" />
       </div>
     </div>
   );

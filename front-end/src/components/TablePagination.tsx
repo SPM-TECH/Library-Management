@@ -50,7 +50,7 @@ export const columns: ColumnDef<Attendance>[] = [
  
   {
     accessorKey: "id",
-    header: <div className="text-white">ID</div>,
+    header: ()=><div className="text-white">ID</div>,
     cell: ({ row }) => (
       <div className="capitalize text-white">{row.getValue("id")}</div>
     ),
@@ -82,7 +82,7 @@ export const columns: ColumnDef<Attendance>[] = [
   },
   {
     accessorKey: "updated_at",
-    header: () => <div className="text-right">Time In</div>,
+    header: () => <div className="text-right text-white">Time In</div>,
     cell: ({ row }) => {
       const updated_at = parseFloat(row.getValue("updated_at"))
 
@@ -129,7 +129,7 @@ export function TablePagination({data}:any) {
   const paginationButtons = [];
 for (let i = 0; i < table.getPageCount(); i++) {
     paginationButtons.push(
-        <Button key={i} onClick={() => table.setPageIndex(i)} className="rounded-full outline-1 outline h-3 ">
+        <Button key={i} onClick={() => table.setPageIndex(i)} className="rounded-full outline-1 outline h-3 bg-slate-600">
             {i + 1}
         </Button>
     );

@@ -79,7 +79,7 @@ const AdminLogin = () => {
           </Button>
           </form>
          
-        {enabled && !isLoading && !data && input.length > 0 && (
+        {enabled && !isLoading && !data && Id.length > 0 && (
           <p className="text-red-600 text-sm my-1 text-center">
            Id does not exist
           </p>
