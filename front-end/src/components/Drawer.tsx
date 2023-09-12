@@ -1,6 +1,9 @@
-import { LayoutDashboard, LogOut, User } from "lucide-react";
+import { LayoutDashboard, LogOutIcon, User, TextQuote } from "lucide-react";
 import logo from "/logo.png";
 import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
+import { useGlobalContext } from "@/context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   isOpen: boolean;
@@ -8,6 +11,15 @@ type Props = {
 };
 
 export default function Drawer({ isOpen, setIsOpen }: Props) {
+  const { setAccessToken } = useGlobalContext();
+  const navigate = useNavigate();
+
+  const signOut = () => {
+    localStorage.removeItem("lib-token");
+    setAccessToken(null);
+    navigate("/admin");
+  };
+
   return (
     <main
       className={
@@ -31,20 +43,31 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
           <div className="px-4">
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <LayoutDashboard />
-              <Link to={"/Dashboard"} className="text-md font-light">Dashboard</Link>
+              <Link to={"/dashboard"} className="text-md font-light">
+                Dashboard
+              </Link>
             </div>
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <User />
-              <Link to={"/users"} className="text-md font-light"> Users</Link>
-              
+              <Link to={"users"} className="text-md font-light">
+                {" "}
+                Users
+              </Link>
             </div>
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
-              <LogOut />
-              <Link to={'/Feedbacks'} className="text-md font-light">Feedbacks</Link>
+              <TextQuote />
+              <Link to={"feedbacks"} className="text-md font-light">
+                Feedbacks
+              </Link>
             </div>
-            <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
-              <LogOut />
-              <Link to={'/'} className="text-md font-light">Sign Out</Link>
+            <div className="text-white flex flex-row justify-start gap-2 py-2 ">
+              <Button
+                className="text-md font-light mt-6"
+                onClick={() => signOut()}
+              >
+                <LogOutIcon className="mr-1" />
+                Sign Out
+              </Button>
             </div>
           </div>
         </article>

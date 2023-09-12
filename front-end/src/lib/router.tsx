@@ -6,6 +6,7 @@ import UsersAddpage from "../pages/UsersAddpage";
 import { getServices } from "../api/service";
 import AdminLogin from "../pages/AdminLoginPage";
 import Feedbacks from "../pages/Feedbacks";
+import Dashboard from "../pages/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,17 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardPage />,
+    children: [
+      { index: true, element: <Dashboard /> },
+      {
+        path: "users",
+        element: <UsersAddpage />,
+      },
+      {
+        path: "feedbacks",
+        element: <Feedbacks />,
+      },
+    ],
   },
   {
     path: "/thankyou",
@@ -26,15 +38,7 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/Users",
-    element: <UsersAddpage />,
-  },
-  {
-    path: "/Feedbacks",
-    element: <Feedbacks />,
-  },
-  {
-    path: "/Admin",
+    path: "/admin",
     element: <AdminLogin />,
   },
 ]);

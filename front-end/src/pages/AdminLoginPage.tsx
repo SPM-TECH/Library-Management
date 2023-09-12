@@ -1,6 +1,3 @@
-import { useQuery } from "react-query";
-import { getUserByNic } from "../api/users";
-
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import logo from "/logo.png";
@@ -8,35 +5,28 @@ import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { Loader2 } from "lucide-react";
 
+import { login } from "@/api/admin";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
+
 const AdminLogin = () => {
-  const [Id, setId] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [enabled, setEnabled] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
-  const { setUser } = useGlobalContext();
+  const navigate = useNavigate();
 
-  const { data, isLoading, isRefetching } = useQuery(
-    ["user"],
-    async () => await getUserByNic(input),
-    {
-      enabled: enabled,
-      onSuccess: (data) => {
-        setUser(data.nic_number);
-      },
-    }
-  );
+  const { setAccessToken } = useGlobalContext();
 
-  const handleClick = () => {
-    const validNIC = /\d{9,11}V/i.test(input);
-    if (!validNIC) {
-      setErrMsg("Not a valid nic number");
-      return;
-    }
-    setEnabled(true);
-  };
-
-
+  const loginMutation = useMutation({
+    mutationFn: async () => await login(username, password),
+    onSuccess: (data) => {
+      localStorage.setItem("lib-token", data.access_token);
+      setAccessToken(data.access_token);
+      navigate("/dashboard");
+    },
+    onError: () => setErrMsg("an error occurred"),
+  });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('/bg.png')] bg-cover bg-no-repeat">
@@ -50,40 +40,33 @@ const AdminLogin = () => {
       </div>
 
       <div className="bg-slate-900 rounded p-10  bg-opacity-50 w-full">
-         
-          <form className="flex flex-col items-center justify-center  gap-3 sm:px-32 w-full">
+        <form className="flex flex-col items-center justify-center  gap-3 sm:px-32 w-full">
           <Input
             className="sm:w-[500px]"
-            placeholder="Enter User ID"
-            value={Id}
-            onChange={(e) => setId(e.target.value)}
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <Input
             className="sm:w-[500px]"
-            placeholder="Enter Your Password"
-             type="password"
+            placeholder="Password"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
-
-          <Button
-            disabled={Id.length === 0 || isRefetching || isLoading}
-            onClick={handleClick}
+          <Button type="submit"
+            disabled={username.length === 0 || password.length === 0}
+            onClick={(e) =>  { e.preventDefault()
+               loginMutation.mutate()}}
             className="w-[200px]"
           >
-            { isLoading && (
+            {loginMutation.isLoading && (
               <Loader2 className="animate-spin mr-2" />
             )}
-            {isLoading ? "Loading" : "Login"}
+            {loginMutation.isLoading ? "Loading" : "Login"}
           </Button>
-          </form>
-         
-        {enabled && !isLoading && !data && Id.length > 0 && (
-          <p className="text-red-600 text-sm my-1 text-center">
-           Id does not exist
-          </p>
-        )}
+        </form>
 
         <p className="text-red-600 text-sm my-1 text-center">{errMsg}</p>
       </div>

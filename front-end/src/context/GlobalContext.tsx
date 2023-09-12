@@ -6,6 +6,8 @@ interface IGlobalState {
   selectedServices: number[];
   addService: (val: number) => void;
   removeService: (val: number) => void;
+  accessToken: string | null;
+  setAccessToken: (val: string | null) => void;
 }
 
 type IAction =
@@ -20,6 +22,10 @@ type IAction =
   | {
       type: "REMOVE_SERVICE";
       payload: number;
+    }
+  | {
+      type: "SET_TOKEN";
+      payload: string | null;
     };
 
 const initialState: IGlobalState = {
@@ -28,10 +34,13 @@ const initialState: IGlobalState = {
   selectedServices: [],
   addService: () => {},
   removeService: () => {},
+  accessToken: localStorage.getItem("lib-token"),
+  setAccessToken: () => {},
 };
 
 const globalContext = React.createContext(initialState);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useGlobalContext = () => React.useContext(globalContext);
 
 const globalReducer = (state: IGlobalState, action: IAction): IGlobalState => {
@@ -49,6 +58,11 @@ const globalReducer = (state: IGlobalState, action: IAction): IGlobalState => {
         selectedServices: state.selectedServices.filter(
           (s) => s != action.payload
         ),
+      };
+    case "SET_TOKEN":
+      return {
+        ...state,
+        accessToken: action.payload,
       };
     default:
       return state;
@@ -69,11 +83,16 @@ const useGlobalReducer = () => {
     dispatch({ type: "REMOVE_SERVICE", payload: value });
   };
 
+  const setAccessToken = (value: string | null) => {
+    dispatch({ type: "SET_TOKEN", payload: value });
+  };
+
   return {
     ...state,
     setUser,
     addService,
     removeService,
+    setAccessToken,
   };
 };
 
