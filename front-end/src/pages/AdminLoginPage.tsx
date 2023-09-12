@@ -40,7 +40,7 @@ const AdminLogin = () => {
       </div>
 
       <div className="bg-slate-900 rounded p-10  bg-opacity-50 w-full">
-        <div className="flex flex-col items-center justify-center  gap-3 sm:px-32 w-full">
+        <form className="flex flex-col items-center justify-center  gap-3 sm:px-32 w-full">
           <Input
             className="sm:w-[500px]"
             placeholder="Username"
@@ -55,9 +55,10 @@ const AdminLogin = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Button
+          <Button type="submit"
             disabled={username.length === 0 || password.length === 0}
-            onClick={() => loginMutation.mutate()}
+            onClick={(e) =>  { e.preventDefault()
+               loginMutation.mutate()}}
             className="w-[200px]"
           >
             {loginMutation.isLoading && (
@@ -65,7 +66,7 @@ const AdminLogin = () => {
             )}
             {loginMutation.isLoading ? "Loading" : "Login"}
           </Button>
-        </div>
+        </form>
 
         <p className="text-red-600 text-sm my-1 text-center">{errMsg}</p>
       </div>
