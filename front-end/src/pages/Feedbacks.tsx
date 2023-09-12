@@ -13,14 +13,17 @@ export default function Feedbacks() {
       ) : (
         <div className="flex flex-col">
           <h1 className="text-white text-2xl m-5 font-bold">Feedbacks</h1>
-          <div className="p-9 grid grid-cols-2 gap-3">
+          <div className="p-9 grid grid-cols-1  sm:grid-cols-2 gap-3">
             {data &&
               data.map((feedback) => (
-                <div className="bg-slate-800 rounded-xl flex flex-col gap-4 shadow-md shadow-slate-900 items-center justify-around p-5">
-                  <p className="text-white">" {feedback.content} "</p>
-                  <p className="text-slate-600">
+                <div
+                  key={`feedback=${feedback.id}`}
+                  className="bg-slate-800 rounded shadow  items-center px-4 py-3"
+                >
+                  <p className="text-slate-100 text-sm"> {feedback.content}</p>
+                  <p className="text-slate-300 text-sm mt-3">
                     {" "}
-                    {format(new Date(feedback.created_at), "yyyy-LL-dd")}{" "}
+                    {format(new Date(feedback.created_at), "dd-LL-yyyyy")}{" "}
                   </p>
                 </div>
               ))}

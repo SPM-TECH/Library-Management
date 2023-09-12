@@ -13,6 +13,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
+import { User } from "@/api/users";
+
 import { Button } from "@/components/ui/button";
 
 import {
@@ -25,55 +27,35 @@ import {
 } from "@/components/ui/table";
 import { format } from "date-fns";
 
-export type Attendance = {
-  id: number;
-  user_name: string;
-  nic_number: string;
-  index_number: string;
-  updated_at: string;
-  faculty: string;
-  created_at: string;
-};
-
-export const columns: ColumnDef<Attendance>[] = [
+const columns: ColumnDef<User>[] = [
   {
     accessorKey: "user_name",
-    header: () => <TableHead className="text-white">Name</TableHead>,
+    header: () => <div className="text-white">Name</div>,
     cell: ({ row }) => (
-      <TableCell className="text-white">{row.getValue("user_name")}</TableCell>
+      <p className="text-white">{row.getValue("user_name")}</p>
     ),
   },
   {
     accessorKey: "faculty",
-    header: () => (
-      <TableHead className="text-right text-white">Faculty</TableHead>
-    ),
+    header: () => <div className=" text-white">Faculty</div>,
     cell: ({ row }) => {
       return (
-        <TableCell className=" font-medium text-white">
-          {row.getValue("faculty")}
-        </TableCell>
+        <p className=" font-medium text-white">{row.getValue("faculty")}</p>
       );
     },
   },
   {
     accessorKey: "updated_at",
-    header: () => (
-      <TableHead className="text-right text-white">Time In</TableHead>
-    ),
+    header: () => <div className=" text-white">Time In</div>,
     cell: ({ row }) => {
-      const formatted = format(new Date(row.getValue("updated_at")), "h:mm a");
+      const formatted = format(new Date(row.getValue("updated_at")), "hh:mm a");
 
-      return (
-        <TableCell className="text-right font-medium text-white">
-          {formatted}
-        </TableCell>
-      );
+      return <p className=" font-medium text-white">{formatted}</p>;
     },
   },
 ];
 
-export function TablePagination({ data }: any) {
+export function TablePagination({ data }: { data: User[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -107,7 +89,7 @@ export function TablePagination({ data }: any) {
       <Button
         key={i}
         onClick={() => table.setPageIndex(i)}
-        className="rounded-full outline-1 outline h-3 bg-slate-600"
+        className="rounded  h-8 w-8 bg-slate-600"
       >
         {i + 1}
       </Button>
@@ -117,7 +99,7 @@ export function TablePagination({ data }: any) {
   return (
     <div className="w-full">
       <div className="flex items-center py-4"></div>
-      <div className="rounded-md border">
+      <div className="rounded-md ">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

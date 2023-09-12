@@ -32,7 +32,7 @@ export function TableDemo() {
           <Button onClick={() => handleClick(data)} className="w-52">
             Click to download Report{" "}
           </Button>
-          <TablePagination data={data} />
+          {data && <TablePagination data={data} />}
         </div>
       )}
     </>
@@ -43,13 +43,13 @@ const SkeletonComp = () => {
   return (
     <div>
       <div className="flex flex-col gap-y-8 p-4  ">
-        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] lg:w-[800px] rounded opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded  lg:w-[800px] opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[800px] opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[800px] opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[800px] opacity-25" />
-        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[800px] opacity-25" />
-        <Skeleton className="lg:h-[40px] -[30px] w-[400px] rounded lg:w-[800px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] lg:w-[500px] rounded opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded  lg:w-[600px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[600px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[600px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[600px] opacity-25" />
+        <Skeleton className="lg:h-[40px] h-[30px] w-[400px] rounded lg:w-[600px] opacity-25" />
+        <Skeleton className="lg:h-[40px] -[30px] w-[400px] rounded lg:w-[600px] opacity-25" />
       </div>
     </div>
   );
