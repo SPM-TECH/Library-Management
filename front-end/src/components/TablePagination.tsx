@@ -1,10 +1,4 @@
-
-
-import * as React from "react"
-import {
-  CaretSortIcon,
-
-} from "@radix-ui/react-icons"
+import * as React from "react";
 
 import {
   ColumnDef,
@@ -17,13 +11,10 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
-
-
-import { Input } from "@/components/ui/input"
 import {
   Table,
   TableBody,
@@ -31,80 +22,65 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { format } from "date-fns"
-
- 
+} from "@/components/ui/table";
+import { format } from "date-fns";
 
 export type Attendance = {
-  id: number
-  user_name: string
-  nic_number:  string
-  index_number: string
-  updated_at: string 
-  faculty:string
-  created_at:string
-}
+  id: number;
+  user_name: string;
+  nic_number: string;
+  index_number: string;
+  updated_at: string;
+  faculty: string;
+  created_at: string;
+};
 
 export const columns: ColumnDef<Attendance>[] = [
- 
   {
-    accessorKey: "id",
-    header: ()=><div className="text-white">ID</div>,
+    accessorKey: "user_name",
+    header: () => <TableHead className="text-white">Name</TableHead>,
     cell: ({ row }) => (
-      <div className="capitalize text-white">{row.getValue("id")}</div>
+      <TableCell className="text-white">{row.getValue("user_name")}</TableCell>
     ),
   },
   {
-    accessorKey: "user_name",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="text-white"
-        >
-          Name
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => <div className="lowercase text-white ml-4">{row.getValue("user_name")}</div>,
-  },
-  {
     accessorKey: "faculty",
-    header: () => <div className="text-right text-white">Faculty</div>,
+    header: () => (
+      <TableHead className="text-right text-white">Faculty</TableHead>
+    ),
     cell: ({ row }) => {
-       
-
-      return <div className="text-right font-medium text-white">{row.getValue('faculty')}</div>
+      return (
+        <TableCell className=" font-medium text-white">
+          {row.getValue("faculty")}
+        </TableCell>
+      );
     },
   },
   {
     accessorKey: "updated_at",
-    header: () => <div className="text-right text-white">Time In</div>,
+    header: () => (
+      <TableHead className="text-right text-white">Time In</TableHead>
+    ),
     cell: ({ row }) => {
-      const updated_at = parseFloat(row.getValue("updated_at"))
+      const formatted = format(new Date(row.getValue("updated_at")), "h:mm a");
 
-      // Format the amount as a dollar amount
-      const formatted = format(new Date(updated_at), "h:mm a")
-
-      return <div className="text-right font-medium text-white">{formatted}</div>
+      return (
+        <TableCell className="text-right font-medium text-white">
+          {formatted}
+        </TableCell>
+      );
     },
   },
-  
-]
+];
 
-export function TablePagination({data}:any) {
-  const [sorting, setSorting] = React.useState<SortingState>([])
+export function TablePagination({ data }: any) {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
+  );
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
-
-  console.log(data)
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -123,24 +99,24 @@ export function TablePagination({data}:any) {
       columnVisibility,
       rowSelection,
     },
-  })
-
+  });
 
   const paginationButtons = [];
-for (let i = 0; i < table.getPageCount(); i++) {
+  for (let i = 0; i < table.getPageCount(); i++) {
     paginationButtons.push(
-        <Button key={i} onClick={() => table.setPageIndex(i)} className="rounded-full outline-1 outline h-3 bg-slate-600">
-            {i + 1}
-        </Button>
+      <Button
+        key={i}
+        onClick={() => table.setPageIndex(i)}
+        className="rounded-full outline-1 outline h-3 bg-slate-600"
+      >
+        {i + 1}
+      </Button>
     );
-}
+  }
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
-         
-       
-      </div>
+      <div className="flex items-center py-4"></div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -156,7 +132,7 @@ for (let i = 0; i < table.getPageCount(); i++) {
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -192,12 +168,10 @@ for (let i = 0; i < table.getPageCount(); i++) {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        
         <div className="space-x-2">
-          
           <div>{paginationButtons.map((u) => u)}</div>
         </div>
       </div>
     </div>
-  )
+  );
 }

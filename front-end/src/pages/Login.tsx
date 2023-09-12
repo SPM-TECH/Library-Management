@@ -4,10 +4,10 @@ import { getUserByNic } from "../api/users";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import logo from "/logo.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { Loader2 } from "lucide-react";
-import useScanDetection from 'use-scan-detection'
+import useScanDetection from "use-scan-detection";
 
 const Login = () => {
   const [input, setInput] = useState("");
@@ -35,18 +35,15 @@ const Login = () => {
     }
     setEnabled(true);
   };
-  
 
   useScanDetection({
-    onComplete:(val:any)=>{
-    setInput(val);
-    setEnabled(true);
-    return;
-  
-  },
-  minLength:3
-})
- 
+    onComplete: (val: any) => {
+      setInput(val);
+      setEnabled(true);
+      return;
+    },
+    minLength: 3,
+  });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('/bg.png')] bg-cover bg-no-repeat">
@@ -60,8 +57,7 @@ const Login = () => {
       </div>
 
       <div className="bg-slate-900 rounded p-10  bg-opacity-50 w-full">
-         
-          <form className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
+        <form className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
           <Input
             className="sm:w-[500px]"
             placeholder="Enter Your ID or Enter Your NIC Number"
@@ -74,13 +70,11 @@ const Login = () => {
             onClick={handleClick}
             className="w-[200px]"
           >
-            { isLoading && (
-              <Loader2 className="animate-spin mr-2" />
-            )}
+            {isLoading && <Loader2 className="animate-spin mr-2" />}
             {isLoading ? "Loading" : "Login"}
           </Button>
-          </form>
-         
+        </form>
+
         {enabled && !isLoading && !data && input.length > 0 && (
           <p className="text-red-600 text-sm my-1 text-center">
             nic does not exist
