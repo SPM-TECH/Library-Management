@@ -11,27 +11,27 @@ const FacultyPieChart = () => {
     {
       name: "Animal Science & Export Agriculture",
       value: data?.animal_science || 0,
-      fill: randomColor({hue:'orange', luminosity: 'dark'}),
+      fill: randomColor({hue:'blue', luminosity: 'light'}),
     },
     {
       name: "Applied Sciences",
       value: data?.applied_science || 0,
-      fill: randomColor({hue:'orange', luminosity: 'dark'}),
+      fill: randomColor({hue:'blue', luminosity: 'light'}),
     },
     {
       name: "Management",
       value: data?.management || 0,
-      fill: randomColor({hue:'orange', luminosity: 'dark'}),
+      fill: randomColor({hue:'blue', luminosity: 'light'}),
     },
     {
       name: "Technological Studies",
       value: data?.techno_studies || 0,
-      fill: randomColor({hue:'orange', luminosity: 'dark'}),
+      fill: randomColor({hue:'blue', luminosity: 'light'}),
     },
     {
       name: "Medicine",
       value: data?.medicine || 0,
-      fill: randomColor({hue:'orange', luminosity: 'dark'}),
+      fill: randomColor({hue:'blue', luminosity: 'light'}),
     },
   ];
 
