@@ -64,6 +64,8 @@ export function TablePagination({ data }: { data: User[] }) {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
+  console.log(data);
+
   const table = useReactTable({
     data,
     columns,
@@ -151,7 +153,7 @@ export function TablePagination({ data }: { data: User[] }) {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="space-x-2">
-          <div>{paginationButtons.map((u) => u)}</div>
+          <div>{paginationButtons.map((u) => u)} </div>
         </div>
       </div>
     </div>

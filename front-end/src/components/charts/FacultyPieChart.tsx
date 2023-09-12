@@ -2,6 +2,7 @@ import { Legend, PieChart, Pie, ResponsiveContainer } from "recharts";
 import { useQuery } from "react-query";
 import { getFaculties } from "@/api/admin";
 import { Skeleton } from "../../components/ui/skeleton";
+import randomColor from "randomcolor";
 
 const FacultyPieChart = () => {
   const { data, isLoading } = useQuery("faculty", getFaculties);
@@ -10,27 +11,27 @@ const FacultyPieChart = () => {
     {
       name: "Animal Science & Export Agriculture",
       value: data?.animal_science || 0,
-      fill: "#F4BE37",
+      fill: randomColor({hue:'orange', luminosity: 'dark'}),
     },
     {
       name: "Applied Sciences",
       value: data?.applied_science || 0,
-      fill: "#FF9F40",
+      fill: randomColor({hue:'orange', luminosity: 'dark'}),
     },
     {
       name: "Management",
       value: data?.management || 0,
-      fill: "#5388D8",
+      fill: randomColor({hue:'orange', luminosity: 'dark'}),
     },
     {
       name: "Technological Studies",
       value: data?.techno_studies || 0,
-      fill: "#0962B4",
+      fill: randomColor({hue:'orange', luminosity: 'dark'}),
     },
     {
       name: "Medicine",
       value: data?.medicine || 0,
-      fill: "#096211",
+      fill: randomColor({hue:'orange', luminosity: 'dark'}),
     },
   ];
 
