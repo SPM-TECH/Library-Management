@@ -48,13 +48,7 @@ export type Attendance = {
 
 export const columns: ColumnDef<Attendance>[] = [
  
-  {
-    accessorKey: "id",
-    header: ()=><div className="text-white">ID</div>,
-    cell: ({ row }) => (
-      <div className="capitalize text-white">{row.getValue("id")}</div>
-    ),
-  },
+  
   {
     accessorKey: "user_name",
     header: ({ column }) => {
@@ -73,11 +67,11 @@ export const columns: ColumnDef<Attendance>[] = [
   },
   {
     accessorKey: "faculty",
-    header: () => <div className="text-right text-white">Faculty</div>,
+    header: () => <div className="text-center  text-white">Faculty</div>,
     cell: ({ row }) => {
        
 
-      return <div className="text-right font-medium text-white">{row.getValue('faculty')}</div>
+      return <div className=" text-center font-medium text-white">{row.getValue('faculty')}</div>
     },
   },
   {
@@ -129,7 +123,7 @@ export function TablePagination({data}:any) {
   const paginationButtons = [];
 for (let i = 0; i < table.getPageCount(); i++) {
     paginationButtons.push(
-        <Button key={i} onClick={() => table.setPageIndex(i)} className="rounded-full outline-1 outline h-3 bg-slate-600">
+        <Button key={i} onClick={() => table.setPageIndex(i)} className="rounded-full outline-1 outline m-1 h-3 bg-slate-600">
             {i + 1}
         </Button>
     );
@@ -195,7 +189,7 @@ for (let i = 0; i < table.getPageCount(); i++) {
         
         <div className="space-x-2">
           
-          <div>{paginationButtons.map((u) => u)}</div>
+          <div>{paginationButtons.map((u) => u)}    </div>
         </div>
       </div>
     </div>

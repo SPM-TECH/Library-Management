@@ -10,7 +10,7 @@ const ServicePieChart = () => {
 
   if (data) {
     datapie = data?.map((item) => {
-      return { name: item?.service, value: item?.count, fill: randomColor() };
+      return { name: item?.service, value: item?.count, fill: randomColor({hue:'orange', luminosity: 'dark'}) };
     });
   }
 
