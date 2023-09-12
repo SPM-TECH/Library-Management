@@ -1,8 +1,5 @@
- 
-
 import { useQuery } from "react-query";
 import { getAttendance } from "../api/admin";
- 
 import { Skeleton } from "../components/ui/skeleton";
 import { Button } from "./ui/button";
 import { toExcel } from "to-excel";
@@ -24,10 +21,7 @@ export function TableDemo() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (data: any) => {
     toExcel.exportXLS(headers, data, "filename");
-
   };
-
-console.log(data)
 
   return (
     <>
@@ -35,10 +29,10 @@ console.log(data)
         <SkeletonComp />
       ) : (
         <div className="w-full flex flex-col">
-          <Button onClick={() => handleClick(data)} className="w-52" >
+          <Button onClick={() => handleClick(data)} className="w-52">
             Click to download Report{" "}
           </Button>
-         <TablePagination data={data}/>
+          <TablePagination data={data} />
         </div>
       )}
     </>

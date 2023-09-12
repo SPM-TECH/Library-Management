@@ -189,7 +189,7 @@ for (let i = 0; i < table.getPageCount(); i++) {
         
         <div className="space-x-2">
           
-          <div>{paginationButtons.map((u) => u)}    </div>
+          <div>{paginationButtons.map((u) => u)}   </div>
         </div>
       </div>
     </div>
