@@ -4,9 +4,10 @@ import { getUserByNic } from "../api/users";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import logo from "/logo.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { Loader2 } from "lucide-react";
+import useScanDetection from 'use-scan-detection'
 
 const Login = () => {
   const [input, setInput] = useState("");
@@ -34,8 +35,18 @@ const Login = () => {
     }
     setEnabled(true);
   };
+  
 
-
+  useScanDetection({
+    onComplete:(val:any)=>{
+    setInput(val);
+    setEnabled(true);
+    return;
+  
+  },
+  minLength:3
+})
+ 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('/bg.png')] bg-cover bg-no-repeat">

@@ -65,6 +65,9 @@ dependencies:
   to-excel:
     specifier: ^2.2.5
     version: 2.2.5
+  use-scan-detection:
+    specifier: ^0.2.3
+    version: 0.2.3(react@18.2.0)
 
 devDependencies:
   '@types/node':
@@ -3135,6 +3138,14 @@ packages:
       '@types/react': 18.2.15
       react: 18.2.0
       tslib: 2.6.2
+    dev: false
+
+  /use-scan-detection@0.2.3(react@18.2.0):
+    resolution: {integrity: sha512-GbtTTovqPkoTCJeoFNcazTIgELZYobNS7bmBV1cuMVsIcpZ3QYMQ/YNgyShtMxrJUqbNctWjMrKxW0hWeDKUEA==}
+    peerDependencies:
+      react: ^16.11.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /use-sidecar@1.1.2(@types/react@18.2.15)(react@18.2.0):
