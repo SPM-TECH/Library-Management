@@ -1,6 +1,6 @@
-import axios from "axios";
+import { axiosInstance } from "./instance";
 
-const API_URL = import.meta.env.VITE_API_URL + "/services";
+const API_URL = "/services";
 
 export interface Service {
   id: number;
@@ -8,11 +8,11 @@ export interface Service {
 }
 
 export async function getServices() {
-  const { data } = await axios.get<Service[]>(API_URL);
+  const { data } = await axiosInstance.get<Service[]>(API_URL);
   return data;
 }
 
 export async function getServiceById(id: string) {
-  const { data } = await axios.get<Service>(`${API_URL}/${id}`);
+  const { data } = await axiosInstance.get<Service>(`${API_URL}/${id}`);
   return data;
 }

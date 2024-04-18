@@ -1,9 +1,8 @@
-import axios from "axios";
 import { User } from "./users";
+import { axiosInstance } from "./instance";
 
-const API_URL = import.meta.env.VITE_API_URL + "/users";
-const SERVICE_URL = import.meta.env.VITE_API_URL + "/services/count";
-const AUTH = import.meta.env.VITE_API_URL + "/auth/login";
+const SERVICE_URL = "/services/count";
+const AUTH = "/auth/login";
 
 interface LoginCount {
   id: number;
@@ -12,23 +11,23 @@ interface LoginCount {
 }
 
 export async function getAttendance() {
-  const { data } = await axios.get<User[]>(`${API_URL}/attendance`);
+  const { data } = await axiosInstance.get<User[]>(`/users/attendance`);
   return data;
 }
 
 export async function getFaculties() {
-  const { data } = await axios.get<{
+  const { data } = await axiosInstance.get<{
     animal_science: number;
     management: number;
     applied_science: number;
     medicine: number;
     techno_studies: number;
-  }>(`${API_URL}/faculty`);
+  }>(`/users/faculty`);
   return data;
 }
 
 export async function getServicesCount() {
-  const { data } = await axios.get<
+  const { data } = await axiosInstance.get<
     Array<{
       service: string;
       count: number;
@@ -38,16 +37,17 @@ export async function getServicesCount() {
 }
 
 export async function loginCount() {
-  const { data } = await axios.get<LoginCount[]>(
-    `${import.meta.env.VITE_API_URL}/admin/login-count`
+  const { data } = await axiosInstance.get<LoginCount[]>(
+    `/admin/login-count`
   );
   return data;
 }
 
 export async function login(username: string, password: string) {
-  const { data } = await axios.post<{ access_token: string }>(`${AUTH}`, {
+  const { data } = await axiosInstance.post<{ access_token: string }>(`${AUTH}`, {
     username,
     password,
   });
+
   return data;
 }

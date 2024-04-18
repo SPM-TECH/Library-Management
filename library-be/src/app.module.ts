@@ -11,29 +11,23 @@ import { Service } from './services/entities/service.entity';
 import { AdminModule } from './admin/admin.module';
 import { Login } from './admin/entities/logins.entity';
 import { ConfigModule } from '@nestjs/config';
-
-// const DATABASE_URL =
-//   'mysql://4itp9qv89z9zusla0ie0:pscale_pw_KCaa4y8JnWYmmkLFJ2mcP5M7MwYh4D3OyJpjDWlCTn8@aws.connect.psdb.cloud/library-app?ssl={"rejectUnauthorized":true}';
+import { FeedbacksModule } from './feedbacks/feedbacks.module';
+import { Feedback } from './feedbacks/entities/feedback.entity';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+      renderPath: '/*',
+      exclude: ["api/*"]
+    }),
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      // type: 'mysql',
-      // host: 'localhost',
-      // port: 3306,
-      // username: 'root',
-      // password: '',
-      // database: 'library_db',
-
       type: 'postgres',
-      // host: 'aws.connect.psdb.cloud',
-      // port: 3306,
-      // username: '4itp9qv89z9zusla0ie0',
-      // password: 'pscale_pw_KCaa4y8JnWYmmkLFJ2mcP5M7MwYh4D3OyJpjDWlCTn8',
-      // database: 'library-app',
-      url: 'postgres://aslam:7LOK0laoHn0Xq6Lh0LOzozW2uJKHOLPv@dpg-cjsmc3r6fquc739o25a0-a.oregon-postgres.render.com/libraryapp_5lvw',
-      entities: [User, Service, Login],
+      url: process.env.PG_URL,
+      entities: [User, Service, Login, Feedback],
       synchronize: true,
       ssl: {
         rejectUnauthorized: true,
@@ -43,10 +37,11 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     ServicesModule,
     AdminModule,
+    FeedbacksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
-  constructor(private dataSource: DataSource) {}
+  constructor(private dataSource: DataSource) { }
 }

@@ -19,7 +19,7 @@ const AdminLogin = () => {
   const { setAccessToken } = useGlobalContext();
 
   const loginMutation = useMutation({
-    mutationFn: async () => await login(username, password),
+    mutationFn: async () => await login(username.trim(), password.trim()),
     onSuccess: (data) => {
       localStorage.setItem("lib-token", data.access_token);
       setAccessToken(data.access_token);
@@ -55,10 +55,13 @@ const AdminLogin = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Button type="submit"
+          <Button
+            type="submit"
             disabled={username.length === 0 || password.length === 0}
-            onClick={(e) =>  { e.preventDefault()
-               loginMutation.mutate()}}
+            onClick={(e) => {
+              e.preventDefault();
+              loginMutation.mutate();
+            }}
             className="w-[200px]"
           >
             {loginMutation.isLoading && (

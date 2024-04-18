@@ -22,7 +22,7 @@ import { useState } from "react";
 import { addFeedback } from "@/api/feedback";
 import { useRouteLoaderData } from "react-router-dom";
 import { Service } from "@/api/service";
-import { Separator } from "../components/ui/separator"
+import { Separator } from "../components/ui/separator";
 
 const options = [
   BookOpenCheck,
@@ -59,6 +59,8 @@ export default function Optionpannel() {
     onSuccess: () => {
       setFeedback("");
       setSuccessMsg("Successfully posted your feedback");
+      setUser("");
+      navigate("/thankyou");
     },
   });
 
@@ -93,7 +95,7 @@ export default function Optionpannel() {
             {optionMutation.isLoading ? "Submitting.." : "Submit Your Choices"}
           </Button>
         </div>
-              <Separator className="my-6"/>
+        <Separator className="my-6" />
         <div className="py-9 flex flex-col items-center gap-5  mb-6">
           <h5 className="text-white text-lg">Give us a feedback</h5>
           <form className=" gap-3 items-center flex flex-col">

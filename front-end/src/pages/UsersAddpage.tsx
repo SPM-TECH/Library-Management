@@ -36,7 +36,6 @@ const UsersAddpage = () => {
   });
 
   const handleClick = () => {
-    //console.log(input)
     const validNIC = /\d{9,11}V/i.test(input.nic_number);
     if (!validNIC) {
       setErrMsg("Not a valid nic number");

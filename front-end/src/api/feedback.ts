@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosInstance } from "./instance";
 
 interface IFeedback {
   id: number;
@@ -6,17 +6,19 @@ interface IFeedback {
   created_at: Date;
 }
 
-const API_URL = import.meta.env.VITE_API_URL + "/feedback";
 
 export async function addFeedback(
   feedback: Partial<IFeedback>,
   nic_number: string
 ) {
-  const { data } = await axios.post(`${API_URL}/${nic_number}`, feedback);
+  const { data } = await axiosInstance.post("/feedbacks", {
+    content: feedback.content,
+    nic_number
+  });
   return data;
 }
 
 export async function getFeedbacks() {
-  const { data } = await axios.get<IFeedback[]>(API_URL);
+  const { data } = await axiosInstance.get<IFeedback[]>("/feedbacks");
   return data;
 }

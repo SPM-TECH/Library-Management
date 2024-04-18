@@ -19,10 +19,9 @@ export class UsersService {
     private serviceRepository: Repository<Service>,
     @InjectRepository(Login)
     private loginRepository: Repository<Login>,
-  ) {}
+  ) { }
 
   create(createUserDto: CreateUserDto) {
-    console.log(createUserDto)
     return this.usersRepository.save(createUserDto);
   }
 

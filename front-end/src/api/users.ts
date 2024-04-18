@@ -1,6 +1,5 @@
-import axios from "axios";
+import { axiosInstance } from "./instance";
 
-const API_URL = import.meta.env.VITE_API_URL + "/users";
 
 export interface User {
   id: number;
@@ -12,22 +11,23 @@ export interface User {
 }
 
 export async function getUsers() {
-  const { data } = await axios.get<User[]>(API_URL);
+  const { data } = await axiosInstance.get<User[]>("/users");
   return data;
 }
 
 export async function getUserByNic(nic: string) {
-  const { data } = await axios.get<User>(`${API_URL}/nic/${nic}`);
-  return data;
+  const res = await axiosInstance.get<User>("/users/nic/" + nic);
+
+  return res.data;
 }
 
 export async function addUser(Data: Partial<User>) {
-  const { data } = await axios.post<User>(`${API_URL}/`, Data);
+  const { data } = await axiosInstance.post<User>("/users", Data);
   return data;
 }
 
 export async function addOptions(nic: string, services: number[]) {
-  const { data } = await axios.patch(`${API_URL}/options/${nic}`, {
+  const { data } = await axiosInstance.patch(`/users/options/${nic}`, {
     services,
   });
   return data;

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "@/App";
 import Thankyou from "../pages/Thankyou";
 import DashboardPage from "../pages/DashboardPage";
@@ -7,6 +7,8 @@ import { getServices } from "../api/service";
 import AdminLogin from "../pages/AdminLoginPage";
 import Feedbacks from "../pages/Feedbacks";
 import Dashboard from "../pages/Dashboard";
+
+const adminAccess = localStorage.getItem("lib-token") === "access_token";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +21,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardPage />,
+    element: adminAccess ? <DashboardPage /> : <Navigate to="/admin" />,
     children: [
       { index: true, element: <Dashboard /> },
       {

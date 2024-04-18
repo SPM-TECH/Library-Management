@@ -1,3 +1,4 @@
+import { Feedback } from 'src/feedbacks/entities/feedback.entity';
 import { Service } from '../../services/entities/service.entity';
 import {
   Entity,
@@ -6,6 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToMany,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -33,4 +35,7 @@ export class User {
 
   @ManyToMany(() => Service, (service) => service.users)
   services: Service[];
+
+  @OneToMany(() => Feedback, fd => fd.user)
+  feedbacks: Feedback[]
 }
