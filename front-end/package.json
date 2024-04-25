@@ -31,7 +31,8 @@
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "to-excel": "^2.2.5",
-    "use-scan-detection": "^0.2.3"
+    "use-scan-detection": "^0.2.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^20.5.9",

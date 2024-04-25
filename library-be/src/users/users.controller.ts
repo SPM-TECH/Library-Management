@@ -14,13 +14,18 @@ import { UpdateUserServiceDto } from './dto/update-user-service.dto';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   //
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
+  }
+
+  @Post("/bulk")
+  bulkUpload(@Body() createUserDto: CreateUserDto[]) {
+    return this.usersService.bulkupload(createUserDto);
   }
 
   @Get()

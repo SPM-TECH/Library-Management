@@ -18,7 +18,7 @@ const Login = () => {
 
   const { data, isLoading, isRefetching } = useQuery(
     ["user"],
-    async () => await getUserByNic(input),
+    async () => await getUserByNic(input.toLowerCase()),
     {
       enabled: enabled,
       onSuccess: (data) => {

@@ -43,20 +43,32 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
           <div className="px-4">
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <LayoutDashboard />
-              <Link to={"/dashboard"} className="text-md font-light">
+              <Link
+                to={"/dashboard"}
+                className="text-md font-light"
+                onClick={() => setIsOpen(false)}
+              >
                 Dashboard
               </Link>
             </div>
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <User />
-              <Link to={"users"} className="text-md font-light">
+              <Link
+                to={"users"}
+                className="text-md font-light"
+                onClick={() => setIsOpen(false)}
+              >
                 {" "}
                 Users
               </Link>
             </div>
             <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
               <TextQuote />
-              <Link to={"feedbacks"} className="text-md font-light">
+              <Link
+                to={"feedbacks"}
+                className="text-md font-light"
+                onClick={() => setIsOpen(false)}
+              >
                 Feedbacks
               </Link>
             </div>

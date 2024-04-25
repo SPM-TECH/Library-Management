@@ -25,6 +25,24 @@ export class UsersService {
     return this.usersRepository.save(createUserDto);
   }
 
+  async bulkupload(students: CreateUserDto[]) {
+    try {
+      const promises = students.map(async (st) => {
+        try {
+          const success = await this.usersRepository.save(st);
+          return { success, error: null };
+        } catch (error) {
+          return { success: null, error };
+        }
+      });
+      const res = await Promise.all(promises);
+
+      return res.filter((r) => r.success !== null);
+    } catch (error) {
+      return error;
+    }
+  }
+
   findAll() {
     return this.usersRepository.find();
   }
