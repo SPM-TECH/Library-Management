@@ -39,7 +39,10 @@ export class UsersService {
 
       return res.filter((r) => r.success !== null);
     } catch (error) {
-      return error;
+      return {
+        success: null,
+        error
+      }
     }
   }
 

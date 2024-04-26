@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+import TablePagination from "./TablePagination";
 
 const DataLoader = () => (
   <div className="h-[250px] flex items-center justify-center">
@@ -57,6 +58,7 @@ const StudentList = () => {
                   <StudentRow key={user.id} {...user} />
                 ))}
               </TableBody>
+              <TablePagination total={data.length} />
             </Table>
           )
         )}

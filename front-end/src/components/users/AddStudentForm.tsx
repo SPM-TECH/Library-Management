@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Input } from "../ui/input";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { addUser } from "@/api/users";
 import {
   Select,
@@ -21,9 +21,16 @@ const AddStudentForm = () => {
   });
   const [errMsg, setErrMsg] = useState("");
 
+  const qc = useQueryClient();
+
   const add = useMutation({
     mutationFn: async () => await addUser(input),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      qc.setQueryData("student_list", (old: unknown) => {
+        if (Array.isArray(old)) {
+          return [data, ...old];
+        }
+      });
       setInput({
         nic_number: "",
         faculty: "",
@@ -73,6 +80,7 @@ const AddStudentForm = () => {
             onValueChange={(val) =>
               setInput((input) => ({ ...input, faculty: val }))
             }
+            value={input.faculty}
           >
             <SelectTrigger>
               <SelectValue placeholder="Faculty" />

@@ -32,3 +32,14 @@ export async function addOptions(nic: string, services: number[]) {
   });
   return data;
 }
+
+export async function bulkUploadUsers(users: User[]) {
+  const res = await axiosInstance.post("/users/bulk", { users })
+
+  if (res.data.status == 201) {
+    return res.data.users as User[]
+  }
+  else {
+    return res.data.error as string
+  }
+}

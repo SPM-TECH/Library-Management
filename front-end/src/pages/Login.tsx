@@ -37,8 +37,8 @@ const Login = () => {
   };
 
   useScanDetection({
-    onComplete: (val: any) => {
-      setInput(val);
+    onComplete: (val: unknown) => {
+      setInput(val as string);
       setEnabled(true);
       return;
     },
