@@ -12,8 +12,15 @@ import {
 import { Loader2 } from "lucide-react";
 import { Button } from "../ui/button";
 
+type AddInput = {
+  nic_number: string;
+  faculty: string;
+  index_number: string;
+  user_name: string;
+};
+
 const AddStudentForm = () => {
-  const [input, setInput] = useState({
+  const [input, setInput] = useState<AddInput>({
     nic_number: "",
     faculty: "",
     index_number: "",
@@ -67,7 +74,7 @@ const AddStudentForm = () => {
           />
           <Input
             name="user_name"
-            placeholder="Enter The Name"
+            placeholder="Name"
             value={input.user_name}
             onChange={(e) =>
               setInput((input) => ({
@@ -80,7 +87,6 @@ const AddStudentForm = () => {
             onValueChange={(val) =>
               setInput((input) => ({ ...input, faculty: val }))
             }
-            value={input.faculty}
           >
             <SelectTrigger>
               <SelectValue placeholder="Faculty" />
@@ -110,7 +116,7 @@ const AddStudentForm = () => {
 
           <Input
             name="index_number"
-            placeholder="Index Number"
+            placeholder="Registration Number"
             value={input.index_number}
             onChange={(e) =>
               setInput((input) => ({

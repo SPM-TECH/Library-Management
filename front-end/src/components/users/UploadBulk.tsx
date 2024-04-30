@@ -5,6 +5,7 @@ import * as XLSX from "xlsx";
 import { bulkUploadUsers, User } from "@/api/users";
 import { validateDetails } from "@/lib/validation";
 import { useMutation, useQueryClient } from "react-query";
+import InstructionHoverCard from "./InstructionHoverCard";
 
 const UploadBulk = () => {
   const inputref = useRef<HTMLInputElement>(null);
@@ -67,6 +68,7 @@ const UploadBulk = () => {
 
   return (
     <div className="my-4">
+      <InstructionHoverCard />
       <input hidden type="file" ref={inputref} onChange={changeFile} />
       {data.length > 0 || rejected.length > 0 ? (
         <div>

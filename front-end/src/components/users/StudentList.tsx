@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "../ui/table";
 import TablePagination from "./TablePagination";
+import { useState } from "react";
 
 const DataLoader = () => (
   <div className="h-[250px] flex items-center justify-center">
@@ -23,7 +24,7 @@ const StudentTableHeader = () => (
       <TableHead className="text-white">Name</TableHead>
       <TableHead className="text-white">Faculty</TableHead>
       <TableHead className="text-white">NIC No</TableHead>
-      <TableHead className="text-white">Index No</TableHead>
+      <TableHead className="text-white">Registration No</TableHead>
     </TableRow>
   </TableHeader>
 );
@@ -38,6 +39,8 @@ const StudentRow = (user: User) => (
 );
 
 const StudentList = () => {
+  const [page, setPage] = useState(0);
+  const [limit] = useState(10);
   const { data, isLoading } = useQuery(["student_list"], () => getUsers());
 
   return (
@@ -54,11 +57,16 @@ const StudentList = () => {
             <Table>
               <StudentTableHeader />
               <TableBody>
-                {data.map((user) => (
+                {data.slice(page * limit, page * limit + limit).map((user) => (
                   <StudentRow key={user.id} {...user} />
                 ))}
               </TableBody>
-              <TablePagination total={data.length} />
+              <TablePagination
+                total={data.length}
+                page={page}
+                setPage={setPage}
+                limit={limit}
+              />
             </Table>
           )
         )}

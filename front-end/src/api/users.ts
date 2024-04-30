@@ -11,7 +11,7 @@ export interface User {
 }
 
 export async function getUsers() {
-  const { data } = await axiosInstance.get<User[]>("/users");
+  const { data } = await axiosInstance.get<User[]>(`/users`);
   return data;
 }
 

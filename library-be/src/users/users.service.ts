@@ -10,6 +10,8 @@ import { Service } from '../services/entities/service.entity';
 import { endOfYesterday, format } from 'date-fns';
 import { faker } from '@faker-js/faker';
 
+const SKIP_LIMIT = 5
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -46,8 +48,12 @@ export class UsersService {
     }
   }
 
-  findAll() {
-    return this.usersRepository.find();
+  findAll(page: number = 0) {
+    return this.usersRepository.find({
+      order: {
+        created_at: "DESC"
+      }
+    });
   }
 
   findOne(id: number) {

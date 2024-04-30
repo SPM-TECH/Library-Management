@@ -51,8 +51,12 @@ const Login = () => {
         <img src={logo} style={{ width: "80px", height: "80px" }} />
 
         <div className="min-h-content flex flex-col items-center justify-center">
-          <h2 className="text-white ">Welcome To The Library of UWU</h2>
-          <p className="text-white">Library Service Live Recorder</p>
+          <h2 className="text-white text-2xl font-semibold">
+            Welcome To The Library of UWU
+          </h2>
+          <p className="text-slate-100 text-xl">
+            Library Service Live Recorder (LSLR)
+          </p>
         </div>
       </div>
 
@@ -60,7 +64,7 @@ const Login = () => {
         <form className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
           <Input
             className="sm:w-[500px]"
-            placeholder="Enter Your ID or Enter Your NIC Number"
+            placeholder="Scan or Enter your ID"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
