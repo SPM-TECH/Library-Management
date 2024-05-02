@@ -4,7 +4,7 @@ import { axiosInstance } from "./instance";
 const SERVICE_URL = "/services/count";
 const AUTH = "/auth/login";
 
-interface LoginCount {
+export interface LoginCount {
   id: number;
   date: string;
   count: number;

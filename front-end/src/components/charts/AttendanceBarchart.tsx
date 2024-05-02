@@ -12,29 +12,59 @@ import {
 import { useQuery } from "react-query";
 import { loginCount } from "../../api/admin";
 import { Skeleton } from "../../components/ui/skeleton";
+import { useCallback, useState } from "react";
+import { getLoginForMonth } from "@/lib/chart-helpers";
+import MonthPicker from "../ui/month-picker";
+import { DropdownMenu } from "../ui/dropdown-menu";
+import {
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu";
+import { format } from "date-fns";
 
 const AttendanceBarchart = () => {
   const { data, isLoading } = useQuery("loginCount", loginCount);
+  const [date, setDate] = useState(new Date());
+
+  const loginCountForMonth = useCallback(() => {
+    if (!data) {
+      return [];
+    }
+    return getLoginForMonth(date.getMonth(), date.getFullYear(), data);
+  }, [date, data]);
 
   return (
     <>
-      {isLoading ? (
-        <div>
-          {" "}
-          <SkeletonComp />
-        </div>
-      ) : (
-        <ResponsiveContainer height={350}>
-          <BarChart width={500} height={350} data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" name="date" />
-            <YAxis name="count" />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="count" fill="#8884d8" />
-          </BarChart>
-        </ResponsiveContainer>
-      )}
+      <div className="flex items-center">
+        <h3 className="text-white p-5">Logins of </h3>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="bg-slate-100 px-4 py-2 rounded">
+            {format(date, "MMMM, yyyy")}
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="bg-slate-100 p-6 z-50">
+            <MonthPicker currentMonth={date} onMonthChange={setDate} />
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      <div className=" flex items-center justify-center w-full px-4">
+        {isLoading ? (
+          <div>
+            <SkeletonComp />
+          </div>
+        ) : (
+          <ResponsiveContainer height={350}>
+            <BarChart width={500} height={350} data={loginCountForMonth()}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" name="date" />
+              <YAxis name="count" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="count" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        )}
+      </div>
     </>
   );
 };

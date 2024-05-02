@@ -30,7 +30,7 @@ export class User {
   @CreateDateColumn()
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ nullable: true, default: null })
   updated_at: Date;
 
   @ManyToMany(() => Service, (service) => service.users)

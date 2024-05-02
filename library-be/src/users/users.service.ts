@@ -24,7 +24,7 @@ export class UsersService {
   ) { }
 
   create(createUserDto: CreateUserDto) {
-    return this.usersRepository.save(createUserDto);
+    return this.usersRepository.save({ ...createUserDto, updated_at: null });
   }
 
   async bulkupload(students: CreateUserDto[]) {
