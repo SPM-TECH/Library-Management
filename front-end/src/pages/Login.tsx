@@ -22,7 +22,7 @@ const Login = () => {
     {
       enabled: enabled,
       onSuccess: (data) => {
-        setUser(data.nic_number);
+        setUser(data);
       },
     }
   );

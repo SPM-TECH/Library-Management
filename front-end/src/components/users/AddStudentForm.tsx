@@ -89,7 +89,7 @@ const AddStudentForm = () => {
             }
           >
             <SelectTrigger>
-              <SelectValue placeholder="Faculty" />
+              <SelectValue placeholder="User Category" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="Animal Science & Export Agriculture">
@@ -110,7 +110,15 @@ const AddStudentForm = () => {
               <SelectItem value="Technological Studies">
                 Technological Studies
               </SelectItem>
-              <SelectItem value="Medicine">Medicine</SelectItem>
+              <SelectItem value="Post Graduates">Post Graduates</SelectItem>
+              <SelectItem value="Academic Staff">Academic Staff</SelectItem>
+              <SelectItem value="Administrative Staff">
+                Administrative Staff
+              </SelectItem>
+              <SelectItem value="Non Academic Staff">
+                Non Academic Staff
+              </SelectItem>
+              <SelectItem value="Others">Others</SelectItem>
             </SelectContent>
           </Select>
 

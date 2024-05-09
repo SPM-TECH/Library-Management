@@ -13,7 +13,7 @@ export class FeedbacksController {
 
   @Get()
   findAll() {
-    return this.feedbacksService.findAll();
+    return this.feedbacksService.getRatings();
   }
 
   @Get(':id')

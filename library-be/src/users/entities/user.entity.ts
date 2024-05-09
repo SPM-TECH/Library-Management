@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
   ManyToMany,
   OneToMany,
+  Index,
 } from 'typeorm';
 
 @Entity()
@@ -19,6 +20,7 @@ export class User {
   user_name: string;
 
   @Column({ unique: true })
+  @Index()
   nic_number: string;
 
   @Column({ unique: true })

@@ -6,6 +6,12 @@ interface IFeedback {
   created_at: Date;
 }
 
+export type Ratings = {
+  id: number,
+  text: string,
+  count: number
+}
+
 
 export async function addFeedback(
   feedback: Partial<IFeedback>,
@@ -19,6 +25,6 @@ export async function addFeedback(
 }
 
 export async function getFeedbacks() {
-  const { data } = await axiosInstance.get<IFeedback[]>("/feedbacks");
+  const { data } = await axiosInstance.get<Ratings[]>("/feedbacks");
   return data;
 }

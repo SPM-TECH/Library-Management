@@ -1,8 +1,9 @@
+import { User } from "@/api/users";
 import React from "react";
 
 interface IGlobalState {
-  user: string;
-  setUser: (nic: string) => void;
+  user: User | null;
+  setUser: (nic: User | null) => void;
   selectedServices: number[];
   addService: (val: number) => void;
   removeService: (val: number) => void;
@@ -13,7 +14,7 @@ interface IGlobalState {
 type IAction =
   | {
       type: "SET_USER";
-      payload: string;
+      payload: User | null;
     }
   | {
       type: "ADD_SERVICE";
@@ -29,7 +30,7 @@ type IAction =
     };
 
 const initialState: IGlobalState = {
-  user: "",
+  user: null,
   setUser: () => {},
   selectedServices: [],
   addService: () => {},
@@ -72,7 +73,7 @@ const globalReducer = (state: IGlobalState, action: IAction): IGlobalState => {
 const useGlobalReducer = () => {
   const [state, dispatch] = React.useReducer(globalReducer, initialState);
 
-  const setUser = (value: string) => {
+  const setUser = (value: User | null) => {
     dispatch({ type: "SET_USER", payload: value });
   };
 

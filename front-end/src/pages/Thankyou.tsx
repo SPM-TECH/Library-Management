@@ -1,13 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import logo from "/logo.png";
+import RateService from "@/components/feedback/RateService";
+import { useState } from "react";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const Thankyou = () => {
+  const [open, setOpen] = useState(true);
 
-  const navigate=useNavigate();
+  const { setUser, user } = useGlobalContext();
+  const navigate = useNavigate();
 
-  setTimeout(()=>navigate('/'),2000)
+  const close = () => {
+    setOpen(false);
+    setUser(null);
+    setTimeout(() => navigate("/"), 2000);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('/bg.png')] bg-cover bg-no-repeat">
+      {user && <RateService open={open} close={close} />}
+
       <div className="min-h-content w-screen items-center justify-center flex flex-row absolute top-10 bg-[#1B2028] ">
         <img src={logo} style={{ width: "80px", height: "80px" }} />
 

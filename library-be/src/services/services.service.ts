@@ -10,7 +10,7 @@ export class ServicesService {
   constructor(
     @InjectRepository(Service)
     private serviceRepository: Repository<Service>,
-  ) {}
+  ) { }
 
   create(createServiceDto: CreateServiceDto) {
     return this.serviceRepository.save(createServiceDto);
@@ -29,7 +29,7 @@ export class ServicesService {
   }
 
   update(id: number, updateServiceDto: UpdateServiceDto) {
-    return this.serviceRepository.save(updateServiceDto);
+    return this.serviceRepository.save({ id, ...updateServiceDto });
   }
 
   remove(id: number) {

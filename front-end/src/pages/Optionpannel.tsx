@@ -1,15 +1,14 @@
 import { Button } from "../components/ui/button";
 import {
   Airplay,
-  BookOpen,
   BookOpenCheck,
   GanttChart,
-  Globe,
-  Info,
   Microscope,
   Newspaper,
   Wifi,
   MoreHorizontal,
+  BookMarked,
+  School,
 } from "lucide-react";
 import Options from "../components/Options";
 import { useMutation } from "react-query";
@@ -17,49 +16,32 @@ import { addOptions } from "@/api/users";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
-import { Textarea } from "../components/ui/textarea";
-import { useState } from "react";
-import { addFeedback } from "@/api/feedback";
 import { useRouteLoaderData } from "react-router-dom";
 import { Service } from "@/api/service";
 import { Separator } from "../components/ui/separator";
 
 const options = [
   BookOpenCheck,
-  BookOpen,
+  BookMarked,
   Airplay,
-  Newspaper,
   Microscope,
-  GanttChart,
-  Globe,
-  Info,
+  Newspaper,
   Wifi,
+  GanttChart,
+  School,
   MoreHorizontal,
 ];
 
 export default function Optionpannel() {
-  const [feedback, setFeedback] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
-
   const data = useRouteLoaderData("dashboard") as Service[];
 
-  const { selectedServices, user, setUser } = useGlobalContext();
+  const { selectedServices, user } = useGlobalContext();
   const navigate = useNavigate();
 
   const optionMutation = useMutation({
-    mutationFn: async () => await addOptions(user, selectedServices),
+    mutationFn: async () =>
+      await addOptions(user!.nic_number, selectedServices),
     onSuccess: () => {
-      setUser("");
-      navigate("/thankyou");
-    },
-  });
-
-  const feedbackMutation = useMutation({
-    mutationFn: async () => await addFeedback({ content: feedback }, user),
-    onSuccess: () => {
-      setFeedback("");
-      setSuccessMsg("Successfully posted your feedback");
-      setUser("");
       navigate("/thankyou");
     },
   });
@@ -67,8 +49,10 @@ export default function Optionpannel() {
   return (
     <div>
       <div className="w-full px-4 flex flex-col items-center">
-        <h4 className="text-white mt-3 mb-1">Welcome {user},</h4>
-        <h5 className="text-slate-200 ">Please select your options</h5>
+        <h4 className="text-white mt-3 mb-1">Welcome {user?.user_name},</h4>
+        <h5 className="text-slate-200 ">
+          Your purpose of visiting the library
+        </h5>
         <div className=" w-full   mt-8 grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-4">
           {data &&
             data.map((item, index) => {
@@ -96,29 +80,6 @@ export default function Optionpannel() {
           </Button>
         </div>
         <Separator className="my-6" />
-        <div className="py-9 flex flex-col items-center gap-5  mb-6">
-          <h5 className="text-white text-lg">Give us a feedback</h5>
-          <form className=" gap-3 items-center flex flex-col">
-            <Textarea
-              placeholder="Enter your Feedback About Our Services"
-              className="w-full sm:w-[600px]"
-              rows={6}
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-            />
-            <Button
-              onClick={() => feedbackMutation.mutate()}
-              className="w-[250px] m-5"
-              disabled={feedback.length === 0 || feedbackMutation.isLoading}
-            >
-              {feedbackMutation.isLoading && (
-                <Loader2 className="animate-spin mr-1" />
-              )}
-              {feedbackMutation.isLoading ? "Submitting.." : "Submit"}
-            </Button>
-          </form>
-          <p className="text-lime-400 my-1 text-sm">{successMsg}</p>
-        </div>
       </div>
     </div>
   );
