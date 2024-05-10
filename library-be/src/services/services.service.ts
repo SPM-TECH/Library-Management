@@ -50,19 +50,19 @@ export class ServicesService {
   async seed() {
     const services = [
       'Borrowing Books',
-      'News Paper Reading',
-      'E Book & ICT',
-      'Reference & Reading',
-      'Research work/support',
+      'Reference & Study',
       'Information Commons',
-      'Information Commons',
-      'Periodical/Thesis',
-      'WIFI/Entertainment',
+      'Research, Periodicals & Thesis',
+      'Newspaper & Recreation',
+      'Wifi/Entertainment',
+      'ICT & E-Resources',
+      'Workshops & Seminars',
       'Others',
     ];
     try {
-      const promises = services.map((service, index) =>
-        this.serviceRepository.save({ id: index, name: service }),
+      const promises = services.map(
+        async (service) =>
+          await this.serviceRepository.save({ name: service }),
       );
       await Promise.all(promises);
       return {

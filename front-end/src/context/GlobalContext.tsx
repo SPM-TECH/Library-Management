@@ -9,6 +9,10 @@ interface IGlobalState {
   removeService: (val: number) => void;
   accessToken: string | null;
   setAccessToken: (val: string | null) => void;
+  deleteModalOpen: boolean;
+  setDeleteModalOpen: (val: boolean) => void;
+  deleteId: number | null;
+  setDeleteId: (val: number | null) => void;
 }
 
 type IAction =
@@ -27,6 +31,14 @@ type IAction =
   | {
       type: "SET_TOKEN";
       payload: string | null;
+    }
+  | {
+      type: "SET_DELETE_OPEN";
+      payload: boolean;
+    }
+  | {
+      type: "SET_DELETE_ID";
+      payload: number | null;
     };
 
 const initialState: IGlobalState = {
@@ -37,6 +49,10 @@ const initialState: IGlobalState = {
   removeService: () => {},
   accessToken: localStorage.getItem("lib-token"),
   setAccessToken: () => {},
+  deleteModalOpen: false,
+  setDeleteModalOpen: () => {},
+  deleteId: null,
+  setDeleteId: () => {},
 };
 
 const globalContext = React.createContext(initialState);
@@ -65,6 +81,17 @@ const globalReducer = (state: IGlobalState, action: IAction): IGlobalState => {
         ...state,
         accessToken: action.payload,
       };
+    case "SET_DELETE_ID":
+      return {
+        ...state,
+        deleteId: action.payload,
+      };
+    case "SET_DELETE_OPEN":
+      return {
+        ...state,
+        deleteModalOpen: action.payload,
+      };
+
     default:
       return state;
   }
@@ -88,12 +115,21 @@ const useGlobalReducer = () => {
     dispatch({ type: "SET_TOKEN", payload: value });
   };
 
+  const setDeleteModalOpen = (value: boolean) => {
+    dispatch({ type: "SET_DELETE_OPEN", payload: value });
+  };
+  const setDeleteId = (value: number | null) => {
+    dispatch({ type: "SET_DELETE_ID", payload: value });
+  };
+
   return {
     ...state,
     setUser,
     addService,
     removeService,
     setAccessToken,
+    setDeleteId,
+    setDeleteModalOpen,
   };
 };
 

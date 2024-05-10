@@ -43,14 +43,13 @@ const RateService = ({ open, close }: Props) => {
 
   return (
     <Dialog open={open} onOpenChange={close}>
-      <DialogContent className="bg-[#1B2028] text-slate-300">
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-slate-300 font-normal text-md">
+          <DialogTitle>
             How satisfied are you with the library services?
           </DialogTitle>
         </DialogHeader>
         <RadioGroup
-          defaultValue={options[1]}
           onValueChange={(e) => {
             setSelected(e);
             feedbackMutation.mutate(e);
@@ -58,14 +57,8 @@ const RateService = ({ open, close }: Props) => {
         >
           {options.map((op) => (
             <div className="flex items-center space-x-2" key={op}>
-              <RadioGroupItem
-                value={op}
-                id={op}
-                className="border-slate-100 bg-slate-300"
-              />
-              <Label htmlFor={op} className="text-slate-200">
-                {op}
-              </Label>
+              <RadioGroupItem value={op} id={op} />
+              <Label htmlFor={op}>{op}</Label>
             </div>
           ))}
         </RadioGroup>

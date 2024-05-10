@@ -11,6 +11,13 @@ import {
 } from "../../components/ui/select";
 import { Loader2 } from "lucide-react";
 import { Button } from "../ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 
 type AddInput = {
   nic_number: string;
@@ -38,6 +45,13 @@ const AddStudentForm = () => {
           return [data, ...old];
         }
       });
+      qc.setQueryData("faculty", (old: unknown) => {
+        if (Array.isArray(old)) {
+          return old.map((d) =>
+            d.name === input.faculty ? { ...d, value: d.value + 1 } : d
+          );
+        }
+      });
       setInput({
         nic_number: "",
         faculty: "",
@@ -57,10 +71,13 @@ const AddStudentForm = () => {
   };
 
   return (
-    <div className="   bg-opacity-50 w-full">
-      <div className="flex flex-col  items-center justify-center w-full">
-        <form className="flex flex-col space-y-4  items-center justify-center bg-[#374151] px-6 py-8 w-full sm:w-[500px] rounded">
-          <h3 className="my-1 text-white text-xl">Add Student</h3>
+    <Card className="w-full md:w-[400px] ">
+      <CardHeader>
+        <CardTitle>Add User</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form className="flex flex-col space-y-4  items-center justify-center   w-full  rounded">
+          <h3 className="my-1  text-xl"></h3>
           <Input
             name="nic_number"
             placeholder="NIC Number"
@@ -68,7 +85,7 @@ const AddStudentForm = () => {
             onChange={(e) =>
               setInput((input) => ({
                 ...input,
-                [e.target.name]: e.target.value,
+                [e.target.name]: e.target.value.trim(),
               }))
             }
           />
@@ -79,13 +96,13 @@ const AddStudentForm = () => {
             onChange={(e) =>
               setInput((input) => ({
                 ...input,
-                [e.target.name]: e.target.value,
+                [e.target.name]: e.target.value.trim(),
               }))
             }
           />
           <Select
             onValueChange={(val) =>
-              setInput((input) => ({ ...input, faculty: val }))
+              setInput((input) => ({ ...input, faculty: val.trim() }))
             }
           >
             <SelectTrigger>
@@ -102,14 +119,15 @@ const AddStudentForm = () => {
                 Applied Sciences
               </SelectItem>
               <SelectItem
-                value="Management
+                value="Management Studies
 "
               >
-                Management
+                Management Studies
               </SelectItem>
               <SelectItem value="Technological Studies">
                 Technological Studies
               </SelectItem>
+              <SelectItem value="Medicine">Medicine</SelectItem>
               <SelectItem value="Post Graduates">Post Graduates</SelectItem>
               <SelectItem value="Academic Staff">Academic Staff</SelectItem>
               <SelectItem value="Administrative Staff">
@@ -129,7 +147,7 @@ const AddStudentForm = () => {
             onChange={(e) =>
               setInput((input) => ({
                 ...input,
-                [e.target.name]: e.target.value,
+                [e.target.name]: e.target.value.trim(),
               }))
             }
           />
@@ -143,10 +161,9 @@ const AddStudentForm = () => {
             {add.isLoading ? "Loading" : "Add"}
           </Button>
         </form>
-      </div>
-
-      <p className="text-red-600 text-sm my-1 text-center">{errMsg}</p>
-    </div>
+      </CardContent>
+      <CardFooter>{errMsg}</CardFooter>
+    </Card>
   );
 };
 

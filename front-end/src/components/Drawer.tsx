@@ -23,7 +23,7 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
   return (
     <main
       className={
-        " fixed overflow-hidden z-10 bg-gray-900 bg-opacity-25 inset-0 transform ease-in-out " +
+        " fixed overflow-hidden z-10  bg-opacity-25 inset-0 transform ease-in-out " +
         (isOpen
           ? " transition-opacity opacity-100 duration-500 translate-x-0  "
           : " transition-all delay-500 opacity-0 -translate-x-full  ")
@@ -31,17 +31,17 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
     >
       <section
         className={
-          " w-80 max-w-lg   absolute bg-gray-700 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform  " +
+          " w-80 max-w-lg bg-slate-100 dark:bg-slate-900 absolute  h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform  " +
           (isOpen ? " translate-x-0 " : " -translate-x-full ")
         }
       >
         <article className="relative w-80 max-w-lg pb-10 flex flex-col space-y-6  h-full">
           <div className=" flex flex-col  items-center py-4">
             <img src={logo} className="h-20" />
-            <p className="text-white text">Library Management System</p>
+            <p className=" text">Library Management System</p>
           </div>
           <div className="px-4">
-            <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
+            <div className=" flex flex-row justify-start gap-2 py-2 border-b-[1px]">
               <LayoutDashboard />
               <Link
                 to={"/dashboard"}
@@ -51,7 +51,7 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
                 Dashboard
               </Link>
             </div>
-            <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
+            <div className=" flex flex-row justify-start gap-2 py-2 border-b-[1px]  ">
               <User />
               <Link
                 to={"users"}
@@ -62,7 +62,7 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
                 Users
               </Link>
             </div>
-            <div className="text-white flex flex-row justify-start gap-2 py-2 border-b-[1px]  border-slate-400">
+            <div className=" flex flex-row justify-start gap-2 py-2 border-b-[1px]  ">
               <TextQuote />
               <Link
                 to={"feedbacks"}
@@ -72,7 +72,7 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
                 Feedbacks
               </Link>
             </div>
-            <div className="text-white flex flex-row justify-start gap-2 py-2 ">
+            <div className=" flex flex-row justify-start gap-2 py-2 ">
               <Button
                 className="text-md font-light mt-6"
                 onClick={() => signOut()}

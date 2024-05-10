@@ -29,9 +29,6 @@ import { join } from 'path';
       url: process.env.PG_URL,
       entities: [User, Service, Login, Feedback],
       synchronize: true,
-      ssl: {
-        rejectUnauthorized: true,
-      },
     }),
     UsersModule,
     AuthModule,

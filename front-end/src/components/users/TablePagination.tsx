@@ -34,15 +34,12 @@ function TablePagination({ total, page, setPage, limit }: Props) {
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious
-            onClick={prev}
-            className="text-slate-100 cursor-pointer"
-          />
+          <PaginationPrevious onClick={prev} className=" cursor-pointer" />
         </PaginationItem>
         {Array.from({ length: buttons }, (_, index) => index + 1).map((i) => (
           <PaginationItem key={i}>
             <PaginationLink
-              className="text-slate-100 cursor-pointer"
+              className=" cursor-pointer"
               onClick={() => setPage(i - 1)}
             >
               {i}
@@ -50,13 +47,10 @@ function TablePagination({ total, page, setPage, limit }: Props) {
           </PaginationItem>
         ))}
         <PaginationItem>
-          <PaginationEllipsis className="text-slate-100" />
+          <PaginationEllipsis className="t" />
         </PaginationItem>
         <PaginationItem>
-          <PaginationNext
-            onClick={next}
-            className="text-slate-100 cursor-pointer"
-          />
+          <PaginationNext onClick={next} className=" cursor-pointer" />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

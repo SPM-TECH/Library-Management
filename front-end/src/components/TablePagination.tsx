@@ -30,27 +30,23 @@ import { format } from "date-fns";
 const columns: ColumnDef<User>[] = [
   {
     accessorKey: "user_name",
-    header: () => <div className="text-white">Name</div>,
-    cell: ({ row }) => (
-      <p className="text-white">{row.getValue("user_name")}</p>
-    ),
+    header: () => <div className="">Name</div>,
+    cell: ({ row }) => <p>{row.getValue("user_name")}</p>,
   },
   {
     accessorKey: "faculty",
-    header: () => <div className=" text-white">Faculty</div>,
+    header: () => <div className=" ">Faculty</div>,
     cell: ({ row }) => {
-      return (
-        <p className=" font-medium text-white">{row.getValue("faculty")}</p>
-      );
+      return <p className=" font-medium ">{row.getValue("faculty")}</p>;
     },
   },
   {
     accessorKey: "updated_at",
-    header: () => <div className=" text-white">Time In</div>,
+    header: () => <div className=" ">Time In</div>,
     cell: ({ row }) => {
       const formatted = format(new Date(row.getValue("updated_at")), "hh:mm a");
 
-      return <p className=" font-medium text-white">{formatted}</p>;
+      return <p className=" font-medium ">{formatted}</p>;
     },
   },
 ];
@@ -63,7 +59,6 @@ export function TablePagination({ data }: { data: User[] }) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-
 
   const table = useReactTable({
     data,
@@ -90,7 +85,7 @@ export function TablePagination({ data }: { data: User[] }) {
       <Button
         key={i}
         onClick={() => table.setPageIndex(i)}
-        className="rounded  h-8 w-8 bg-slate-600"
+        className="rounded  h-8 w-8"
       >
         {i + 1}
       </Button>

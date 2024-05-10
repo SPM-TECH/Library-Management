@@ -1,6 +1,6 @@
 import { getUsers, User } from "@/api/users";
 import { useQuery } from "react-query";
-import { Loader2 } from "lucide-react";
+import { Loader2, Trash2 } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -11,6 +11,8 @@ import {
 } from "../ui/table";
 import TablePagination from "./TablePagination";
 import { useState } from "react";
+import { Button } from "../ui/button";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const DataLoader = () => (
   <div className="h-[250px] flex items-center justify-center">
@@ -21,32 +23,53 @@ const DataLoader = () => (
 const StudentTableHeader = () => (
   <TableHeader>
     <TableRow>
-      <TableHead className="text-white">Name</TableHead>
-      <TableHead className="text-white">Faculty</TableHead>
-      <TableHead className="text-white">NIC No</TableHead>
-      <TableHead className="text-white">Registration No</TableHead>
+      <TableHead>Name</TableHead>
+      <TableHead>Category</TableHead>
+      <TableHead>NIC No</TableHead>
+      <TableHead>Registration No</TableHead>
     </TableRow>
   </TableHeader>
 );
 
-const StudentRow = (user: User) => (
-  <TableRow key={user.id}>
-    <TableCell className="text-slate-300">{user.user_name}</TableCell>
-    <TableCell className="text-slate-300">{user.faculty}</TableCell>
-    <TableCell className="text-slate-300">{user.nic_number}</TableCell>
-    <TableCell className="text-slate-300">{user.index_number}</TableCell>
-  </TableRow>
-);
+const StudentRow = ({
+  user,
+  onDelete,
+}: {
+  user: User;
+  onDelete: () => void;
+}) => {
+  return (
+    <TableRow key={user.id}>
+      <TableCell className="">{user.user_name}</TableCell>
+      <TableCell className=" ">{user.faculty}</TableCell>
+      <TableCell className=" ">{user.nic_number}</TableCell>
+      <TableCell className="">{user.index_number}</TableCell>
+      <TableCell>
+        <Button variant="ghost" onClick={onDelete}>
+          <Trash2 className="w-4 h-4" />
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+};
 
 const StudentList = () => {
   const [page, setPage] = useState(0);
   const [limit] = useState(10);
+
+  const { setDeleteModalOpen, setDeleteId } = useGlobalContext();
+
+  const onDelete = (id: number) => {
+    setDeleteId(id);
+    setDeleteModalOpen(true);
+  };
+
   const { data, isLoading } = useQuery(["student_list"], () => getUsers());
 
   return (
     <div className="h-full w-full">
-      <h3 className="my-4 font-semibold text-2xl underline underline-offset-2 text-white">
-        List of students
+      <h3 className="my-4 font-semibold text-2xl underline underline-offset-2 ">
+        List of users
       </h3>
 
       <div>
@@ -58,7 +81,11 @@ const StudentList = () => {
               <StudentTableHeader />
               <TableBody>
                 {data.slice(page * limit, page * limit + limit).map((user) => (
-                  <StudentRow key={user.id} {...user} />
+                  <StudentRow
+                    key={user.id}
+                    user={user}
+                    onDelete={() => onDelete(user.id)}
+                  />
                 ))}
               </TableBody>
               <TablePagination

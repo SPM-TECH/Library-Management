@@ -72,7 +72,7 @@ const UploadBulk = () => {
       <input hidden type="file" ref={inputref} onChange={changeFile} />
       {data.length > 0 || rejected.length > 0 ? (
         <div>
-          <p className="text-sm text-slate-100 my-1">{`You have uploaded ${data.length} correct students details`}</p>
+          <p className="text-sm  my-1">{`You have uploaded ${data.length} correct students details`}</p>
           <p className="text-sm text-red-400 my-1">{`You have uploaded ${rejected.length} wrong students details`}</p>
           <Button
             onClick={() => mutate()}

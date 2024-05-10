@@ -12,7 +12,7 @@ const InstructionHoverCard = () => {
     <HoverCard>
       <HoverCardTrigger>
         <Button variant="link">
-          <InfoIcon className="w-6 h-6 text-slate-200" />
+          <InfoIcon className="w-6 h-6" />
         </Button>
       </HoverCardTrigger>
       <HoverCardContent className="w-[500px]">

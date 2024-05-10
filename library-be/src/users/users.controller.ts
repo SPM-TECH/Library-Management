@@ -24,33 +24,32 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Post("/bulk")
+  @Post('/bulk')
   async bulkUpload(@Body() { users }: { users: CreateUserDto[] }) {
     try {
       const registered = await this.usersService.bulkupload(users);
       if (Array.isArray(registered)) {
-        const sucess = registered.map(r => r.success)
+        const sucess = registered.map((r) => r.success);
         return {
           status: 201,
-          users: sucess
-        }
+          users: sucess,
+        };
       } else {
         return {
           status: 400,
-          error: "failed to upload"
-        }
+          error: 'failed to upload',
+        };
       }
     } catch (error) {
       return {
         status: 400,
-        error
-      }
+        error,
+      };
     }
   }
 
   @Get()
   findAll() {
-
     return this.usersService.findAll();
   }
 

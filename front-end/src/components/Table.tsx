@@ -4,6 +4,7 @@ import { Skeleton } from "../components/ui/skeleton";
 import { Button } from "./ui/button";
 import { toExcel } from "to-excel";
 import { TablePagination } from "./TablePagination";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 export function TableDemo() {
   const { data, isLoading } = useQuery("attendance", getAttendance);
@@ -24,18 +25,23 @@ export function TableDemo() {
   };
 
   return (
-    <>
-      {isLoading ? (
-        <SkeletonComp />
-      ) : (
-        <div className="w-full flex flex-col">
-          <Button onClick={() => handleClick(data)} className="w-52">
-            Click to download Report{" "}
-          </Button>
-          {data && <TablePagination data={data} />}
-        </div>
-      )}
-    </>
+    <Card>
+      <CardHeader>
+        <CardTitle>Recent users</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {isLoading ? (
+          <SkeletonComp />
+        ) : (
+          <div className="w-full flex flex-col">
+            <Button onClick={() => handleClick(data)} className="w-52">
+              Click to download Report{" "}
+            </Button>
+            {data && <TablePagination data={data} />}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 

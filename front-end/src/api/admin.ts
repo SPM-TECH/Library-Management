@@ -16,13 +16,10 @@ export async function getAttendance() {
 }
 
 export async function getFaculties() {
-  const { data } = await axiosInstance.get<{
-    animal_science: number;
-    management: number;
-    applied_science: number;
-    medicine: number;
-    techno_studies: number;
-  }>(`/users/faculty`);
+  const { data } = await axiosInstance.get<Array<{
+    name: string
+    value: number
+  }>>(`/users/faculty`);
   return data;
 }
 

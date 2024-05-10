@@ -52,7 +52,7 @@ const Login = () => {
 
         <div className="min-h-content flex flex-col items-center justify-center">
           <h2 className="text-white text-2xl font-semibold">
-            Welcome To The Library of UWU
+            Welcome To The UWU Library
           </h2>
           <p className="text-slate-100 text-xl">
             Library Service Live Recorder (LSLR)

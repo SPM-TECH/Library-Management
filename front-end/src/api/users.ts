@@ -43,3 +43,18 @@ export async function bulkUploadUsers(users: User[]) {
     return res.data.error as string
   }
 }
+
+export async function deleteUser(userId: number) {
+  try {
+    const res = await axiosInstance.delete(`/users/${userId}`)
+
+    if (res.status === 200) {
+      return true
+    }
+
+    return false
+
+  } catch (error) {
+    return false
+  }
+}

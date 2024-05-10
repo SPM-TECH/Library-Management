@@ -10,7 +10,7 @@ import { Service } from '../services/entities/service.entity';
 import { endOfYesterday, format } from 'date-fns';
 import { faker } from '@faker-js/faker';
 
-const SKIP_LIMIT = 5
+//const SKIP_LIMIT = 5
 
 @Injectable()
 export class UsersService {
@@ -43,16 +43,16 @@ export class UsersService {
     } catch (error) {
       return {
         success: null,
-        error
-      }
+        error,
+      };
     }
   }
 
   findAll(page: number = 0) {
     return this.usersRepository.find({
       order: {
-        created_at: "DESC"
-      }
+        created_at: 'DESC',
+      },
     });
   }
 
@@ -129,20 +129,77 @@ export class UsersService {
   }
 
   async groupByFaculty() {
-    const science = await this.usersRepository.countBy({ faculty: 'science' });
-    const arts = await this.usersRepository.countBy({ faculty: 'arts' });
+    const animal_science = await this.usersRepository.countBy({
+      faculty: 'Animal Science & Export Agriculture',
+    });
+    const applied_sciences = await this.usersRepository.countBy({
+      faculty: 'Applied Sciences',
+    });
     const management = await this.usersRepository.countBy({
-      faculty: 'management',
+      faculty: 'Management Studies',
+    });
+    const techno = await this.usersRepository.countBy({
+      faculty: 'Technological Studies',
+    });
+    const pg = await this.usersRepository.countBy({
+      faculty: 'Post Graduates',
+    });
+
+    const astaff = await this.usersRepository.countBy({
+      faculty: 'Academic Staff',
+    });
+    const nass = await this.usersRepository.countBy({
+      faculty: 'Non Academic Staff',
+    });
+    const other = await this.usersRepository.countBy({
+      faculty: 'Others',
     });
     const medicine = await this.usersRepository.countBy({
-      faculty: 'medicine',
+      faculty: 'Medicine',
     });
-    return {
-      science,
-      arts,
-      management,
-      medicine,
-    };
+
+
+
+    const dataPie = [
+      {
+        name: 'Animal Science & Export Agriculture',
+        value: animal_science || 0,
+      },
+      {
+        name: 'Applied Sciences',
+        value: applied_sciences || 0,
+      },
+      {
+        name: 'Management Studies',
+        value: management || 0,
+      },
+      {
+        name: 'Technological Studies',
+        value: techno || 0,
+      },
+      {
+        name: 'Medicine',
+        value: medicine || 0,
+      },
+      {
+        name: 'Post Graduates',
+        value: pg || 0,
+      },
+      {
+        name: 'Academic Staff',
+        value: astaff || 0,
+      },
+      {
+        name: 'Non Academic Staff',
+        value: nass || 0,
+      },
+      {
+        name: 'Other',
+        value: other || 0,
+      },
+    ];
+
+    return dataPie;
   }
 
   async seed() {
