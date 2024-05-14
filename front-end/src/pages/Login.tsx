@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { Loader2 } from "lucide-react";
 import useScanDetection from "use-scan-detection";
+import { ModeToggle } from "@/components/ThemeToggle";
 
 const Login = () => {
   const [input, setInput] = useState("");
@@ -46,50 +47,52 @@ const Login = () => {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[url('/bg.png')] bg-cover bg-no-repeat">
-      <div className="min-h-content w-screen items-center justify-center flex flex-row absolute top-10 bg-[#1B2028] ">
-        <img src={logo} style={{ width: "80px", height: "80px" }} />
-
-        <div className="min-h-content flex flex-col items-center justify-center">
-          <h2 className="text-white text-2xl font-semibold">
-            Welcome To The UWU Library
-          </h2>
-          <p className="text-slate-100 text-xl">
-            Library Service Live Recorder (LSLR)
-          </p>
+    <div className="min-h-screen  bg-[url('/bg-books.jpg')] bg-cover bg-no-repeat ">
+      <div className="py-2 absolute top-2 w-full flex items-center justify-between px-2">
+        <div>
+          <img src={logo} style={{ width: "80px", height: "80px" }} />
         </div>
+        <ModeToggle />
       </div>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className=" rounded p-10 bg-white  dark:bg-black dark:bg-opacity-50  bg-opacity-50 w-full">
+          <div className=" flex flex-col items-center justify-center mb-10">
+            <h2 className=" text-2xl font-semibold">
+              Welcome To The UWU Library
+            </h2>
+            <p className="text-xl">Library Service Live Recorder (LSLR)</p>
+          </div>
+          <form className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
+            <Input
+              className="sm:w-[500px]"
+              placeholder="Scan or Enter your ID"
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
 
-      <div className="bg-slate-900 rounded p-10  bg-opacity-50 w-full">
-        <form className="flex items-center justify-center space-x-3 px-2 sm:px-32 w-full">
-          <Input
-            className="sm:w-[500px]"
-            placeholder="Scan or Enter your ID"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
+            <Button
+              disabled={input.length === 0 || isRefetching || isLoading}
+              onClick={handleClick}
+              className="w-[200px]"
+            >
+              {isLoading && <Loader2 className="animate-spin mr-2" />}
+              {isLoading ? "Loading" : "Login"}
+            </Button>
+          </form>
 
-          <Button
-            disabled={input.length === 0 || isRefetching || isLoading}
-            onClick={handleClick}
-            className="w-[200px]"
-          >
-            {isLoading && <Loader2 className="animate-spin mr-2" />}
-            {isLoading ? "Loading" : "Login"}
-          </Button>
-        </form>
+          {enabled && !isLoading && !data && input.length > 0 && (
+            <p className="text-red-600 text-sm my-1 text-center">
+              nic does not exist
+            </p>
+          )}
 
-        {enabled && !isLoading && !data && input.length > 0 && (
-          <p className="text-red-600 text-sm my-1 text-center">
-            nic does not exist
-          </p>
-        )}
+          <p className="text-red-600 text-sm my-1 text-center">{errMsg}</p>
+        </div>
 
-        <p className="text-red-600 text-sm my-1 text-center">{errMsg}</p>
-      </div>
-
-      <div className="h-12 w-screen  absolute bottom-12 bg-[#1B2028] flex items-center justify-center ">
-        <h2 className="text-white text-center">Information Is Power</h2>
+        <div className="h-12 w-screen  absolute bottom-12 bg-[#1B2028] flex items-center justify-center ">
+          <h2 className="text-white text-center">Information Is Power</h2>
+        </div>
       </div>
     </div>
   );

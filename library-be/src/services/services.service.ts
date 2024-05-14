@@ -33,7 +33,13 @@ export class ServicesService {
   }
 
   remove(id: number) {
-    return this.serviceRepository.delete(id);
+    try {
+      return this.serviceRepository.delete(id);
+
+    } catch (error) {
+      console.log(error);
+
+    }
   }
   async getServicesCount() {
     const services = await this.serviceRepository.find({

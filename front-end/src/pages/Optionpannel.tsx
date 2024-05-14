@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useRouteLoaderData } from "react-router-dom";
 import { Service } from "@/api/service";
-import { Separator } from "../components/ui/separator";
+import { ModeToggle } from "@/components/ThemeToggle";
 
 const options = [
   BookOpenCheck,
@@ -48,9 +48,14 @@ export default function Optionpannel() {
 
   return (
     <div>
+      <div className="flex items-center justify-between">
+        <h4 className=" mt-3 mb-1">
+          Welcome <span className="font-semibold">{user?.user_name}</span>
+        </h4>
+        <ModeToggle />
+      </div>
       <div className="w-full px-4 flex flex-col items-center">
-        <h4 className="text-white mt-3 mb-1">Welcome {user?.user_name},</h4>
-        <h5 className="text-slate-200 ">
+        <h5 className="text-2xl font-semibold">
           Your purpose of visiting the library
         </h5>
         <div className=" w-full   mt-8 grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -59,7 +64,7 @@ export default function Optionpannel() {
               return (
                 <Options
                   name={item.name}
-                  Icon={options[index]}
+                  Icon={options[index] ? options[index] : MoreHorizontal}
                   key={item.name}
                   id={item.id}
                 />
@@ -79,7 +84,6 @@ export default function Optionpannel() {
             {optionMutation.isLoading ? "Submitting.." : "Submit Your Choices"}
           </Button>
         </div>
-        <Separator className="my-6" />
       </div>
     </div>
   );

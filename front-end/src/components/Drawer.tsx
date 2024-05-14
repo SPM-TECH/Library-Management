@@ -1,4 +1,10 @@
-import { LayoutDashboard, LogOutIcon, User, TextQuote } from "lucide-react";
+import {
+  LayoutDashboard,
+  LogOutIcon,
+  User,
+  TextQuote,
+  Settings,
+} from "lucide-react";
 import logo from "/logo.png";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
@@ -60,6 +66,16 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
               >
                 {" "}
                 Users
+              </Link>
+            </div>
+            <div className=" flex flex-row justify-start gap-2 py-2 border-b-[1px]  ">
+              <Settings />
+              <Link
+                to={"settings"}
+                className="text-md font-light"
+                onClick={() => setIsOpen(false)}
+              >
+                Settings
               </Link>
             </div>
             <div className=" flex flex-row justify-start gap-2 py-2 border-b-[1px]  ">

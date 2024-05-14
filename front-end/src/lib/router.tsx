@@ -7,6 +7,7 @@ import { getServices } from "../api/service";
 import AdminLogin from "../pages/AdminLoginPage";
 import Feedbacks from "../pages/Feedbacks";
 import Dashboard from "../pages/Dashboard";
+import SettingsPage from "@/pages/SettingsPage";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "feedbacks",
         element: <Feedbacks />,
+      },
+      {
+        path: "settings",
+        element: <SettingsPage />,
       },
     ],
   },

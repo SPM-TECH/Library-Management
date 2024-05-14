@@ -29,7 +29,7 @@ const AdminLogin = () => {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[url('/bg.png')] bg-cover bg-no-repeat">
+    <div className="min-h-screen flex items-center justify-center bg-[url('/bg.jpg')] bg-cover bg-no-repeat">
       <div className="min-h-content w-screen items-center justify-center flex flex-row absolute top-10 bg-[#1B2028] ">
         <img src={logo} style={{ width: "80px", height: "80px" }} />
 

@@ -2,6 +2,7 @@ import { LucideIcon } from "lucide-react";
 import { useState } from "react";
 import { cn } from "../lib/utils";
 import { useGlobalContext } from "../context/GlobalContext";
+import { Card, CardContent } from "./ui/card";
 
 type Props = {
   Icon: LucideIcon;
@@ -25,19 +26,23 @@ export default function Options({ Icon, name, id }: Props) {
   };
 
   return (
-    <div
+    <Card
       className={cn(
-        ` hover:bg-zinc-800 py-4 cursor-pointer transition-colors rounded shadow h-[85px] ${
-          selected ? "bg-zinc-800 border-[1px] border-white" : "bg-zinc-700 "
+        ` dark:hover:bg-zinc-800 py-4 cursor-pointer transition-colors  bg-white hover:bg-gray-300 ${
+          selected ? " bg-gray-300 dark:bg-zinc-900" : "dark:bg-zinc-700 "
         }`
       )}
       onClick={() => onClick()}
     >
-      <div className="flex flex-col items-center justify-center">
-        <Icon className="h-6 w-6 text-zinc-200 block mb-1" />
+      <CardContent>
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <Icon className="h-6 w-6  block mb-1" />
 
-        <p className="text-white ">{name}</p>
-      </div>
-    </div>
+            <p className=" ">{name}</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
