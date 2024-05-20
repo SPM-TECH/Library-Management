@@ -6,9 +6,10 @@ import { Input } from "../components/ui/input";
 import logo from "/logo.png";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
-import { Loader2 } from "lucide-react";
+import { LayoutDashboard, Loader2 } from "lucide-react";
 import useScanDetection from "use-scan-detection";
 import { ModeToggle } from "@/components/ThemeToggle";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [input, setInput] = useState("");
@@ -46,17 +47,24 @@ const Login = () => {
     minLength: 3,
   });
 
+  //bg-[url('/bg-books.jpg')] bg-cover bg-no-repeat
+
   return (
-    <div className="min-h-screen  bg-[url('/bg-books.jpg')] bg-cover bg-no-repeat ">
+    <div className="min-h-screen   ">
       <div className="py-2 absolute top-2 w-full flex items-center justify-between px-2">
-        <div>
-          <img src={logo} style={{ width: "80px", height: "80px" }} />
-        </div>
         <ModeToggle />
+        <Link to="dashboard">
+          <Button>
+            <LayoutDashboard className="h-4 w-4" />
+          </Button>
+        </Link>
       </div>
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center  h-screen">
         <div className=" rounded p-10 bg-white  dark:bg-black dark:bg-opacity-50  bg-opacity-50 w-full">
-          <div className=" flex flex-col items-center justify-center mb-10">
+          <div className=" flex flex-col items-center  my-10">
+            <div className="p-8 rounded-full mb-6 bg-slate-50 dark:bg-gray-700">
+              <img src={logo} style={{ width: "120px", height: "120px" }} />
+            </div>
             <h2 className=" text-2xl font-semibold">
               Welcome To The UWU Library
             </h2>

@@ -43,8 +43,8 @@ export default function Drawer({ isOpen, setIsOpen }: Props) {
       >
         <article className="relative w-80 max-w-lg pb-10 flex flex-col space-y-6  h-full">
           <div className=" flex flex-col  items-center py-4">
-            <img src={logo} className="h-20" />
-            <p className=" text">Library Management System</p>
+            <img src={logo} width={100} height={100} />
+            <p className=" text mt-4">Library Management System</p>
           </div>
           <div className="px-4">
             <div className=" flex flex-row justify-start gap-2 py-2 border-b-[1px]">

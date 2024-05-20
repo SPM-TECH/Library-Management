@@ -23,7 +23,7 @@ const Thankyou = () => {
       <div className="min-h-content w-screen items-center justify-center py-4 flex flex-row gap-6 absolute top-10 bg-white dark:bg-black ">
         <img
           src={logo}
-          style={{ width: "80px", height: "80px", borderRadius: "40px" }}
+          style={{ width: "120px", height: "120px", borderRadius: "60px" }}
         />
 
         <div className="min-h-content flex flex-col items-center justify-center">
